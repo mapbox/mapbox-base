@@ -1,0 +1,3 @@
+[submodule "libs/geometry.hpp"]
+	path = libs/geometry.hpp
+	url = git@github.com:mapbox/geometry.hpp.git

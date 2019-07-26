@@ -1,11 +1,13 @@
-if(__MAPBOX_BASE_VARIANT_CMAKE__)
+if(TARGET mapbox-base-variant)
     return()
 endif()
 
-set(__MAPBOX_BASE_VARIANT_CMAKE__ TRUE)
+execute_process(
+    COMMAND git submodule update --init ${CMAKE_CURRENT_SOURCE_DIR}/variant
+)
 
 add_library(mapbox-base-variant INTERFACE)
 
 target_include_directories(mapbox-base-variant SYSTEM INTERFACE
-    ${CMAKE_CURRENT_SOURCE_DIR}/libs/variant/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/variant/include
 )

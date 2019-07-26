@@ -3,7 +3,8 @@ if(TARGET mapbox-base-geometry-hpp)
 endif()
 
 execute_process(
-    COMMAND git submodule update --init ${CMAKE_CURRENT_SOURCE_DIR}/geometry.hpp
+    COMMAND git submodule update --init geometry.hpp
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 add_library(mapbox-base-geometry-hpp INTERFACE)

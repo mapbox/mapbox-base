@@ -1,6 +1,6 @@
 [submodule "libs/geometry.hpp"]
 	path = libs/geometry.hpp
-	url = git@github.com:mapbox/geometry.hpp.git
+	url = https://github.com/mapbox/geometry.hpp.git
 [submodule "libs/variant"]
 	path = libs/variant
-	url = git@github.com:mapbox/variant.git
+	url = https://github.com/mapbox/variant.git

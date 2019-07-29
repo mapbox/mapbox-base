@@ -4,3 +4,6 @@
 [submodule "libs/variant"]
 	path = libs/variant
 	url = https://github.com/mapbox/variant.git
+[submodule "libs/optional"]
+	path = libs/optional
+	url = https://github.com/mapbox/Optional.git

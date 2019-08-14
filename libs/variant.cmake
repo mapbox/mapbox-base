@@ -4,11 +4,11 @@ endif()
 
 execute_process(
     COMMAND git submodule update --init variant
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
 )
 
 add_library(mapbox-base-variant INTERFACE)
 
 target_include_directories(mapbox-base-variant SYSTEM INTERFACE
-    ${CMAKE_CURRENT_SOURCE_DIR}/variant/include
+    ${CMAKE_CURRENT_LIST_DIR}/variant/include
 )

@@ -7,3 +7,6 @@
 [submodule "libs/optional"]
 	path = libs/optional
 	url = https://github.com/mapbox/Optional.git
+[submodule "libs/args"]
+	path = libs/args
+	url = https://github.com/Taywee/args

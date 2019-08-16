@@ -6,6 +6,7 @@
 #include <optional.hpp>
 #include <nonstd/expected.hpp>
 #include <ghc/filesystem.hpp>
+#include <rapidjson/document.h>
 
 int main() {
     args::ArgumentParser argumentParser("Mapbox Base Test");
@@ -15,12 +16,15 @@ int main() {
     mapbox::util::variant<int> variant;
     ghc::filesystem::path path;
 
+    rapidjson::Document rapidjsonDocument;
+
     (void)argumentParser;
     (void)expected;
     (void)geometry;
     (void)optional;
     (void)variant;
     (void)path;
+    (void)rapidjsonDocument;
 
     mapbox::pixelmatch(nullptr, nullptr, 0u, 0u, nullptr, 0.0);
 

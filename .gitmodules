@@ -19,3 +19,6 @@
 [submodule "libs/pixelmatch-cpp"]
 	path = libs/pixelmatch-cpp
 	url = https://github.com/mapbox/pixelmatch-cpp.git
+[submodule "libs/rapidjson"]
+	path = libs/rapidjson
+	url = https://github.com/Tencent/rapidjson.git

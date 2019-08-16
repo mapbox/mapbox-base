@@ -16,3 +16,6 @@
 [submodule "libs/filesystem"]
 	path = libs/filesystem
 	url = https://github.com/gulrak/filesystem.git
+[submodule "libs/pixelmatch-cpp"]
+	path = libs/pixelmatch-cpp
+	url = https://github.com/mapbox/pixelmatch-cpp.git

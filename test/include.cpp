@@ -1,5 +1,6 @@
 #include <mapbox/geometry.hpp>
 #include <mapbox/variant.hpp>
+#include <mapbox/pixelmatch.hpp>
 
 #include <args.hxx>
 #include <optional.hpp>
@@ -20,6 +21,8 @@ int main() {
     (void)optional;
     (void)variant;
     (void)path;
+
+    mapbox::pixelmatch(nullptr, nullptr, 0u, 0u, nullptr, 0.0);
 
     return 0;
 }

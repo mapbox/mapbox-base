@@ -13,3 +13,6 @@
 [submodule "libs/expected-lite"]
 	path = libs/expected-lite
 	url = https://github.com/martinmoene/expected-lite.git
+[submodule "libs/filesystem"]
+	path = libs/filesystem
+	url = https://github.com/gulrak/filesystem.git

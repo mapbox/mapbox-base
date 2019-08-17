@@ -1,24 +1,24 @@
 [submodule "libs/geometry.hpp"]
-	path = libs/geometry.hpp
+	path = mapbox/geometry.hpp
 	url = https://github.com/mapbox/geometry.hpp.git
 [submodule "libs/variant"]
-	path = libs/variant
+	path = mapbox/variant
 	url = https://github.com/mapbox/variant.git
 [submodule "libs/optional"]
-	path = libs/optional
+	path = mapbox/optional
 	url = https://github.com/mapbox/Optional.git
 [submodule "libs/args"]
-	path = libs/args
+	path = extras/args
 	url = https://github.com/Taywee/args
 [submodule "libs/expected-lite"]
-	path = libs/expected-lite
+	path = extras/expected-lite
 	url = https://github.com/martinmoene/expected-lite.git
 [submodule "libs/filesystem"]
-	path = libs/filesystem
+	path = extras/filesystem
 	url = https://github.com/gulrak/filesystem.git
 [submodule "libs/pixelmatch-cpp"]
-	path = libs/pixelmatch-cpp
+	path = mapbox/pixelmatch-cpp
 	url = https://github.com/mapbox/pixelmatch-cpp.git
 [submodule "libs/rapidjson"]
-	path = libs/rapidjson
+	path = extras/rapidjson
 	url = https://github.com/Tencent/rapidjson.git

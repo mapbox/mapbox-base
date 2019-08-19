@@ -5,6 +5,9 @@ enable_testing()
 
 # Required to avoid warnings when setting visibility
 cmake_policy(SET CMP0063 NEW)
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 

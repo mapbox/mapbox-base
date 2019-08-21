@@ -23,6 +23,7 @@ target_link_libraries(include-test-targets PRIVATE
     Mapbox::Base::Extras::expected-lite
     Mapbox::Base::Extras::filesystem
     Mapbox::Base::Extras::rapidjson
+    Mapbox::Base::geojson.hpp
     Mapbox::Base::geometry.hpp
     Mapbox::Base::jni.hpp
     Mapbox::Base::optional

@@ -9,6 +9,7 @@
 #include <ghc/filesystem.hpp>
 #include <rapidjson/document.h>
 #include <jni/jni.hpp>
+#include <supercluster.hpp>
 
 int main() {
     args::ArgumentParser argumentParser("Mapbox Base Test");
@@ -19,6 +20,7 @@ int main() {
     ghc::filesystem::path path;
     jni::jlong jlong;
     mapbox::geojson::geojson geojson;
+    mapbox::supercluster::Options superclusterOptions;
 
     rapidjson::Document rapidjsonDocument;
 
@@ -31,6 +33,7 @@ int main() {
     (void)rapidjsonDocument;
     (void)jlong;
     (void)geojson;
+    (void)superclusterOptions;
 
     mapbox::pixelmatch(nullptr, nullptr, 0u, 0u, nullptr, 0.0);
 

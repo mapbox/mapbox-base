@@ -28,3 +28,9 @@
 [submodule "mapbox/geojson.hpp"]
 	path = mapbox/geojson.hpp
 	url = https://github.com/mapbox/geojson.hpp.git
+[submodule "mapbox/supercluster.hpp"]
+	path = mapbox/supercluster.hpp
+	url = https://github.com/mapbox/supercluster.hpp.git
+[submodule "extras/kdbush.hpp"]
+	path = extras/kdbush.hpp
+	url = https://github.com/mourner/kdbush.hpp.git

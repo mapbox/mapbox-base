@@ -23,11 +23,13 @@ target_link_libraries(include-test-targets PRIVATE
     Mapbox::Base::Extras::expected-lite
     Mapbox::Base::Extras::filesystem
     Mapbox::Base::Extras::rapidjson
+    Mapbox::Base::Extras::kdbush.hpp
     Mapbox::Base::geojson.hpp
     Mapbox::Base::geometry.hpp
     Mapbox::Base::jni.hpp
     Mapbox::Base::optional
     Mapbox::Base::pixelmatch-cpp
+    Mapbox::Base::supercluster.hpp
     Mapbox::Base::variant
 )
 

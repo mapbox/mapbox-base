@@ -23,6 +23,7 @@ execute_process(
 
 mapbox_base_add_library(geometry.hpp ${CMAKE_CURRENT_LIST_DIR}/geometry.hpp/include)
 mapbox_base_add_library(io ${CMAKE_CURRENT_LIST_DIR}/io/include)
+mapbox_base_add_library(jni.hpp ${CMAKE_CURRENT_LIST_DIR}/jni.hpp/include)
 mapbox_base_add_library(optional ${CMAKE_CURRENT_LIST_DIR}/optional)
 mapbox_base_add_library(pixelmatch-cpp ${CMAKE_CURRENT_LIST_DIR}/pixelmatch-cpp/include)
 mapbox_base_add_library(variant ${CMAKE_CURRENT_LIST_DIR}/variant/include)

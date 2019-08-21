@@ -22,3 +22,6 @@
 [submodule "libs/rapidjson"]
 	path = extras/rapidjson
 	url = https://github.com/Tencent/rapidjson.git
+[submodule "mapbox/jni.hpp"]
+	path = mapbox/jni.hpp
+	url = https://github.com/mapbox/jni.hpp.git

@@ -21,6 +21,7 @@ execute_process(
     WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
 )
 
+mapbox_base_add_library(geojson.hpp ${CMAKE_CURRENT_LIST_DIR}/geojson.hpp/include)
 mapbox_base_add_library(geometry.hpp ${CMAKE_CURRENT_LIST_DIR}/geometry.hpp/include)
 mapbox_base_add_library(io ${CMAKE_CURRENT_LIST_DIR}/io/include)
 mapbox_base_add_library(jni.hpp ${CMAKE_CURRENT_LIST_DIR}/jni.hpp/include)

@@ -25,3 +25,6 @@
 [submodule "mapbox/jni.hpp"]
 	path = mapbox/jni.hpp
 	url = https://github.com/mapbox/jni.hpp.git
+[submodule "mapbox/geojson.hpp"]
+	path = mapbox/geojson.hpp
+	url = https://github.com/mapbox/geojson.hpp.git

@@ -1,3 +1,4 @@
+#include <mapbox/geojson.hpp>
 #include <mapbox/geometry.hpp>
 #include <mapbox/variant.hpp>
 #include <mapbox/pixelmatch.hpp>
@@ -17,6 +18,7 @@ int main() {
     mapbox::util::variant<int> variant;
     ghc::filesystem::path path;
     jni::jlong jlong;
+    mapbox::geojson::geojson geojson;
 
     rapidjson::Document rapidjsonDocument;
 
@@ -28,6 +30,7 @@ int main() {
     (void)path;
     (void)rapidjsonDocument;
     (void)jlong;
+    (void)geojson;
 
     mapbox::pixelmatch(nullptr, nullptr, 0u, 0u, nullptr, 0.0);
 

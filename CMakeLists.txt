@@ -14,3 +14,7 @@ set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/extras)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mapbox)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/test)
+
+if(PLATFORM STREQUAL android)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/platform/android)
+endif()

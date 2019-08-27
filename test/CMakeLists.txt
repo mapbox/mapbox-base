@@ -31,6 +31,7 @@ target_link_libraries(include-test-targets PRIVATE
     Mapbox::Base::pixelmatch-cpp
     Mapbox::Base::supercluster.hpp
     Mapbox::Base::variant
+    Mapbox::Base::weak
 )
 
 target_include_directories(include-test-targets SYSTEM PRIVATE
@@ -41,6 +42,7 @@ add_test(NAME include-test-bundle COMMAND include-test-bundle)
 add_test(NAME include-test-targets COMMAND include-test-targets)
 
 add_executable(io-test ${CMAKE_CURRENT_LIST_DIR}/io.cpp)
+add_executable(weak-test ${CMAKE_CURRENT_LIST_DIR}/weak.cpp)
 
 target_link_libraries(io-test PRIVATE
     Mapbox::Base::io
@@ -48,7 +50,13 @@ target_link_libraries(io-test PRIVATE
     Mapbox::Base::Extras::filesystem
 )
 
+target_link_libraries(weak-test PRIVATE
+    Mapbox::Base::weak
+    pthread
+)
+
 add_test(NAME io-test COMMAND io-test)
+add_test(NAME weak-test COMMAND weak-test)
 
 add_definitions(-DTEST_FIXTURES_PATH="${CMAKE_CURRENT_LIST_DIR}/fixtures/")
 add_definitions(-DTEST_BINARY_PATH="${CMAKE_CURRENT_BINARY_DIR}/")

@@ -13,6 +13,7 @@ namespace util {
 
 using ErrorType = std::string;
 
+// NOLINTNEXTLINE(misc-definitions-in-headers)
 nonstd::expected<std::string, ErrorType> readFile(const ghc::filesystem::path& filename) {
     nonstd::expected<std::string, ErrorType> result;
 
@@ -27,19 +28,21 @@ nonstd::expected<std::string, ErrorType> readFile(const ghc::filesystem::path& f
     return result;
 }
 
+// NOLINTNEXTLINE(misc-definitions-in-headers)
 nonstd::expected<void, ErrorType> writeFile(const ghc::filesystem::path& filename, const std::string& data) {
     nonstd::expected<void, ErrorType> result;
 
-    FILE *fd = fopen(filename.string().c_str(), "wb");
-    if (!fd) {
+    std::ofstream file(filename, std::ios::binary);
+    if (!file.good()) {
         return nonstd::make_unexpected(std::string("Failed to write file '") + filename.string() + std::string("'"));
     }
 
-    fwrite(data.data(), sizeof(std::string::value_type), data.size(), fd);
-    fclose(fd);
+    file << data;
+
     return result;
 }
 
+// NOLINTNEXTLINE(misc-definitions-in-headers)
 nonstd::expected<void, ErrorType> deleteFile(const ghc::filesystem::path& filename) {
     nonstd::expected<void, ErrorType> result;
 
@@ -51,7 +54,7 @@ nonstd::expected<void, ErrorType> deleteFile(const ghc::filesystem::path& filena
     return result;
 }
 
-
+// NOLINTNEXTLINE(misc-definitions-in-headers)
 nonstd::expected<void, ErrorType> copyFile(const ghc::filesystem::path& sourcePath, const ghc::filesystem::path& destinationPath) {
     nonstd::expected<void, ErrorType> result;
 

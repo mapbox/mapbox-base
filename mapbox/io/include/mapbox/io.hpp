@@ -57,22 +57,12 @@ nonstd::expected<void, ErrorType> deleteFile(const ghc::filesystem::path& filena
 // NOLINTNEXTLINE(misc-definitions-in-headers)
 nonstd::expected<void, ErrorType> copyFile(const ghc::filesystem::path& sourcePath,
                                            const ghc::filesystem::path& destinationPath) {
-    nonstd::expected<void, ErrorType> result;
-
-    std::ifstream source(sourcePath, std::ios::binary);
-    if (!source.good()) {
-        return nonstd::make_unexpected(std::string("Failed to open source file '") + sourcePath.string() +
-                                       std::string("'"));
+    auto contents = readFile(sourcePath);
+    if (!contents) {
+        return nonstd::make_unexpected(contents.error());
     }
 
-    std::ofstream destination(destinationPath, std::ios::binary);
-    if (!destination.good()) {
-        return nonstd::make_unexpected(std::string("Failed to open destination file '") + destinationPath.string() +
-                                       std::string("'"));
-    }
-
-    destination << source.rdbuf();
-    return result;
+    return writeFile(destinationPath, *contents);
 }
 
 } // namespace util

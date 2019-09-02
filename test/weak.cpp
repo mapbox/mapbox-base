@@ -40,7 +40,7 @@ void testLock() {
     assert(!weak2.expired());
     assert(weak1);
     assert(weak2);
-    t.reset();  // Should not crash.
+    t.reset(); // Should not crash.
     thread1.join();
     thread2.join();
 
@@ -73,7 +73,7 @@ void testWeakMethod() {
     std::this_thread::sleep_for(50ms);
     weak3(100);
 
-    t.reset();  // Should not crash.
+    t.reset(); // Should not crash.
     // The following calls are ignored.
     weak1(1);
     weak2(2);
@@ -103,7 +103,7 @@ void testWeakMethodBlock() {
 
     std::thread thread([&] { weak(100ms); });
     std::this_thread::sleep_for(10ms);
-    t.reset();  // Deletion is blocked until weak(100ms) call returns.
+    t.reset(); // Deletion is blocked until weak(100ms) call returns.
     thread.join();
     auto totalTime = duration_cast<milliseconds>(high_resolution_clock::now() - first);
 
@@ -119,4 +119,3 @@ int main() {
     testWeakMethodBlock();
     return 0;
 }
-

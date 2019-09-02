@@ -3,10 +3,10 @@
 #include <ghc/filesystem.hpp>
 #include <nonstd/expected.hpp>
 
-#include <fstream>
-#include <sstream>
 #include <cerrno>
+#include <fstream>
 #include <iostream>
+#include <sstream>
 
 namespace mapbox {
 namespace util {
@@ -55,17 +55,20 @@ nonstd::expected<void, ErrorType> deleteFile(const ghc::filesystem::path& filena
 }
 
 // NOLINTNEXTLINE(misc-definitions-in-headers)
-nonstd::expected<void, ErrorType> copyFile(const ghc::filesystem::path& sourcePath, const ghc::filesystem::path& destinationPath) {
+nonstd::expected<void, ErrorType> copyFile(const ghc::filesystem::path& sourcePath,
+                                           const ghc::filesystem::path& destinationPath) {
     nonstd::expected<void, ErrorType> result;
 
     std::ifstream source(sourcePath, std::ios::binary);
     if (!source.good()) {
-        return nonstd::make_unexpected(std::string("Failed to open source file '") + sourcePath.string() + std::string("'"));
+        return nonstd::make_unexpected(std::string("Failed to open source file '") + sourcePath.string() +
+                                       std::string("'"));
     }
 
     std::ofstream destination(destinationPath, std::ios::binary);
     if (!destination.good()) {
-        return nonstd::make_unexpected(std::string("Failed to open destination file '") + destinationPath.string() + std::string("'"));
+        return nonstd::make_unexpected(std::string("Failed to open destination file '") + destinationPath.string() +
+                                       std::string("'"));
     }
 
     destination << source.rdbuf();

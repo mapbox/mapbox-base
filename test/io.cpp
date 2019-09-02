@@ -28,13 +28,16 @@ int main() {
     voidExpected = mapbox::util::copyFile(path, copyPath);
     assert(voidExpected);
 
+    stringExpected = mapbox::util::readFile(copyPath);
+    assert(*stringExpected == bar);
+
     voidExpected = mapbox::util::copyFile(path, unauthorizedPath);
     assert(!voidExpected);
-    assert(voidExpected.error() == std::string("Failed to open destination file '/root/unauthorized'"));
+    assert(voidExpected.error() == std::string("Failed to write file '/root/unauthorized'"));
 
     voidExpected = mapbox::util::copyFile(invalidPath, path);
     assert(!voidExpected);
-    assert(voidExpected.error() == std::string("Failed to open source file 'invalid'"));
+    assert(voidExpected.error() == std::string("Failed to read file 'invalid'"));
 
     voidExpected = mapbox::util::deleteFile(path);
     assert(voidExpected);

@@ -12,12 +12,12 @@ void testLock() {
     static std::atomic_int g_i;
     struct TestLock {
         void inc() { ++g_i; }
-        mapbox::base::WeakPtrFactory<TestLock> factory{this};
+        mapbox::base::WeakPtrFactory<TestLock> factory_{this};
     };
 
     auto t = std::make_unique<TestLock>();
-    auto weak1 = t->factory.makeWeakPtr();
-    auto weak2 = t->factory.makeWeakPtr();
+    auto weak1 = t->factory_.makeWeakPtr();
+    auto weak2 = t->factory_.makeWeakPtr();
     auto weak3 = weak2;
 
     std::thread thread1([&] {
@@ -57,10 +57,10 @@ void testWeakMethod() {
     class Test {
     public:
         void increaseGlobal(int delta) { g_i += delta; }
-        std::function<void(int)> makeWeakIncreaseGlobal() { return factory.makeWeakMethod(&Test::increaseGlobal); }
+        std::function<void(int)> makeWeakIncreaseGlobal() { return factory_.makeWeakMethod(&Test::increaseGlobal); }
 
     private:
-        mapbox::base::WeakPtrFactory<Test> factory{this};
+        mapbox::base::WeakPtrFactory<Test> factory_{this};
     };
 
     auto t = std::make_unique<Test>();
@@ -85,6 +85,7 @@ void testWeakMethod() {
 }
 
 void testWeakMethodBlock() {
+    // NOLINTNEXTLINE(google-build-using-namespace)
     using namespace std::chrono;
     using namespace std::chrono_literals;
     static std::atomic_bool g_call_finished{false};
@@ -93,11 +94,11 @@ void testWeakMethodBlock() {
             std::this_thread::sleep_for(duration);
             g_call_finished = true;
         }
-        mapbox::base::WeakPtrFactory<Test> factory{this};
+        mapbox::base::WeakPtrFactory<Test> factory_{this};
     };
 
     auto t = std::make_unique<Test>();
-    auto weak = t->factory.makeWeakMethod(&Test::block);
+    auto weak = t->factory_.makeWeakMethod(&Test::block);
     auto first = high_resolution_clock::now();
 
     std::thread thread([&] { weak(100ms); });

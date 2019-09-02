@@ -9,7 +9,7 @@ compiler:
 addons:
   apt:
     sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.8' ]
-    packages: [ 'g++-6', 'clang-3.8' ]
+    packages: [ 'g++-6', 'clang-3.8', 'clang-tidy' ]
 
 before_script:
 - if [[ ${CXX} == "g++" ]]; then export CXX="g++-6" CC="gcc-6" ; fi
@@ -17,6 +17,6 @@ before_script:
 
 script:
   - mkdir build && cd build
-  - cmake .. -DCMAKE_BUILD_TYPE=Debug
+  - cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_CLANG_TIDY=clang-tidy
   - cmake --build .
   - ctest -V

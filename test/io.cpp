@@ -1,6 +1,9 @@
 #include "../mapbox/io/include/mapbox/io.hpp"
 
+#include "io_delete.hpp"
+
 #include <cassert>
+#include <string>
 
 int main() {
     ghc::filesystem::path path(std::string(TEST_BINARY_PATH) + "foo.txt");
@@ -39,15 +42,6 @@ int main() {
     assert(!voidExpected);
     assert(voidExpected.error() == std::string("Failed to read file 'invalid'"));
 
-    voidExpected = mapbox::base::deleteFile(path);
-    assert(voidExpected);
-
-    voidExpected = mapbox::base::deleteFile(copyPath);
-    assert(voidExpected);
-
-    voidExpected = mapbox::base::deleteFile(invalidPath);
-    assert(!voidExpected);
-    assert(voidExpected.error() == std::string("Failed to delete file 'invalid'"));
-
+    deleteTests(path, copyPath, invalidPath);
     return 0;
 }

@@ -41,7 +41,11 @@ target_include_directories(include-test-targets SYSTEM PRIVATE
 add_test(NAME include-test-bundle COMMAND include-test-bundle)
 add_test(NAME include-test-targets COMMAND include-test-targets)
 
-add_executable(io-test ${CMAKE_CURRENT_LIST_DIR}/io.cpp)
+add_executable(io-test
+    ${CMAKE_CURRENT_LIST_DIR}/io.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/io_delete.cpp
+)
+
 add_executable(weak-test ${CMAKE_CURRENT_LIST_DIR}/weak.cpp)
 
 target_link_libraries(io-test PRIVATE

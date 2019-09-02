@@ -15,8 +15,7 @@ namespace base {
 
 using ErrorType = std::string;
 
-// NOLINTNEXTLINE(misc-definitions-in-headers)
-nonstd::expected<std::string, ErrorType> readFile(const ghc::filesystem::path& filename) {
+inline nonstd::expected<std::string, ErrorType> readFile(const ghc::filesystem::path& filename) {
     nonstd::expected<std::string, ErrorType> result;
 
     std::ifstream file(filename.string(), std::ios::binary);
@@ -30,8 +29,7 @@ nonstd::expected<std::string, ErrorType> readFile(const ghc::filesystem::path& f
     return result;
 }
 
-// NOLINTNEXTLINE(misc-definitions-in-headers)
-nonstd::expected<void, ErrorType> writeFile(const ghc::filesystem::path& filename, const std::string& data) {
+inline nonstd::expected<void, ErrorType> writeFile(const ghc::filesystem::path& filename, const std::string& data) {
     nonstd::expected<void, ErrorType> result;
 
     std::ofstream file(filename, std::ios::binary);
@@ -44,8 +42,7 @@ nonstd::expected<void, ErrorType> writeFile(const ghc::filesystem::path& filenam
     return result;
 }
 
-// NOLINTNEXTLINE(misc-definitions-in-headers)
-nonstd::expected<void, ErrorType> deleteFile(const ghc::filesystem::path& filename) {
+inline nonstd::expected<void, ErrorType> deleteFile(const ghc::filesystem::path& filename) {
     nonstd::expected<void, ErrorType> result;
 
     const int ret = std::remove(filename.string().c_str());
@@ -56,9 +53,8 @@ nonstd::expected<void, ErrorType> deleteFile(const ghc::filesystem::path& filena
     return result;
 }
 
-// NOLINTNEXTLINE(misc-definitions-in-headers)
-nonstd::expected<void, ErrorType> copyFile(const ghc::filesystem::path& sourcePath,
-                                           const ghc::filesystem::path& destinationPath) {
+inline nonstd::expected<void, ErrorType> copyFile(const ghc::filesystem::path& sourcePath,
+                                                  const ghc::filesystem::path& destinationPath) {
     auto contents = readFile(sourcePath);
     if (!contents) {
         return nonstd::make_unexpected(contents.error());

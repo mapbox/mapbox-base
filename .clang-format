@@ -1,0 +1,9 @@
+---
+Language: Cpp
+BasedOnStyle: Google
+AccessModifierOffset: -4
+AllowShortFunctionsOnASingleLine: Inline
+ColumnLimit: 120
+IndentWidth: 4
+SpacesBeforeTrailingComments: 1
+...

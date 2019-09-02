@@ -1,19 +1,19 @@
 #include <mapbox/geojson.hpp>
 #include <mapbox/geometry.hpp>
-#include <mapbox/variant.hpp>
 #include <mapbox/pixelmatch.hpp>
+#include <mapbox/variant.hpp>
 
-#include <args.hxx>
-#include <optional.hpp>
-#include <nonstd/expected.hpp>
-#include <ghc/filesystem.hpp>
 #include <rapidjson/document.h>
+#include <args.hxx>
+#include <ghc/filesystem.hpp>
 #include <jni/jni.hpp>
+#include <nonstd/expected.hpp>
+#include <optional.hpp>
 #include <supercluster.hpp>
 
 int main() {
     args::ArgumentParser argumentParser("Mapbox Base Test");
-    nonstd::expected<void,int> expected;
+    nonstd::expected<void, int> expected;
     mapbox::geometry::geometry<int> geometry;
     std::experimental::optional<int> optional;
     mapbox::util::variant<int> variant;

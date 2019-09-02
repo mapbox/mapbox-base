@@ -19,13 +19,9 @@ class WeakPtrSharedData {
 public:
     WeakPtrSharedData() = default;
 
-    void sharedLock() {
-        mutex_.lock_shared();
-    }
+    void sharedLock() { mutex_.lock_shared(); }
 
-    void sharedUnlock() {
-        mutex_.unlock_shared();
-    }
+    void sharedUnlock() { mutex_.unlock_shared(); }
 
     void invalidate() {
         std::lock_guard<std::shared_timed_mutex> lock(mutex_);
@@ -35,7 +31,7 @@ public:
     bool valid() const { return valid_; }
 
 private:
-    std::shared_timed_mutex mutex_;  // Blocks on WeakPtrFactory destruction.
+    std::shared_timed_mutex mutex_; // Blocks on WeakPtrFactory destruction.
     std::atomic<bool> valid_{true};
 };
 
@@ -45,7 +41,7 @@ using WeakRef = std::weak_ptr<WeakPtrSharedData>;
 template <typename Object>
 class WeakPtrBase;
 
-}  // namespace internal
+} // namespace internal
 /// @endcond
 
 /**
@@ -169,7 +165,7 @@ protected:
     WeakPtrBase() = default;
     WeakPtrBase(WeakPtrBase&&) noexcept = default;
     WeakPtrBase(const WeakPtrBase&) noexcept = default;
-    template <typename U>  // NOLINTNEXTLINE
+    template <typename U> // NOLINTNEXTLINE
     WeakPtrBase(WeakPtrBase<U>&& other) noexcept
         : weak_(std::move(other.weak_)), ptr_(static_cast<Object*>(other.ptr_)) {}
     explicit WeakPtrBase(WeakRef weak, Object* ptr) : weak_(std::move(weak)), ptr_(ptr) { assert(ptr_); }
@@ -186,7 +182,7 @@ private:
     /// @endcond
 };
 
-}  // namespace internal
+} // namespace internal
 
 /**
  * @brief Default implementation of a weak pointer to an object.
@@ -216,7 +212,7 @@ public:
      * @tparam U a type, which \c Object is convertible to
      * @param other \c WeakPtr<U> instance
      */
-    template <typename U>  // NOLINTNEXTLINE
+    template <typename U> // NOLINTNEXTLINE
     WeakPtr(WeakPtr<U>&& other) noexcept : internal::WeakPtrBase<Object>(std::move(other)) {}
 
     /**
@@ -344,5 +340,5 @@ private:
     Object* obj_;
 };
 
-}  // namespace base
-}  // namespace mapbox
+} // namespace base
+} // namespace mapbox

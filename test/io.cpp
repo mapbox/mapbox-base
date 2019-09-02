@@ -10,42 +10,42 @@ int main() {
 
     std::string bar("bar");
 
-    nonstd::expected<void, std::string> voidExpected = mapbox::util::writeFile(path, bar);
+    nonstd::expected<void, std::string> voidExpected = mapbox::base::writeFile(path, bar);
     assert(voidExpected);
 
-    voidExpected = mapbox::util::writeFile(unauthorizedPath, bar);
+    voidExpected = mapbox::base::writeFile(unauthorizedPath, bar);
     assert(!voidExpected);
     assert(voidExpected.error() == std::string("Failed to write file '/root/unauthorized'"));
 
-    nonstd::expected<std::string, std::string> stringExpected = mapbox::util::readFile(path);
+    nonstd::expected<std::string, std::string> stringExpected = mapbox::base::readFile(path);
     assert(stringExpected);
     assert(*stringExpected == bar);
 
-    stringExpected = mapbox::util::readFile(invalidPath);
+    stringExpected = mapbox::base::readFile(invalidPath);
     assert(!stringExpected);
     assert(stringExpected.error() == std::string("Failed to read file 'invalid'"));
 
-    voidExpected = mapbox::util::copyFile(path, copyPath);
+    voidExpected = mapbox::base::copyFile(path, copyPath);
     assert(voidExpected);
 
-    stringExpected = mapbox::util::readFile(copyPath);
+    stringExpected = mapbox::base::readFile(copyPath);
     assert(*stringExpected == bar);
 
-    voidExpected = mapbox::util::copyFile(path, unauthorizedPath);
+    voidExpected = mapbox::base::copyFile(path, unauthorizedPath);
     assert(!voidExpected);
     assert(voidExpected.error() == std::string("Failed to write file '/root/unauthorized'"));
 
-    voidExpected = mapbox::util::copyFile(invalidPath, path);
+    voidExpected = mapbox::base::copyFile(invalidPath, path);
     assert(!voidExpected);
     assert(voidExpected.error() == std::string("Failed to read file 'invalid'"));
 
-    voidExpected = mapbox::util::deleteFile(path);
+    voidExpected = mapbox::base::deleteFile(path);
     assert(voidExpected);
 
-    voidExpected = mapbox::util::deleteFile(copyPath);
+    voidExpected = mapbox::base::deleteFile(copyPath);
     assert(voidExpected);
 
-    voidExpected = mapbox::util::deleteFile(invalidPath);
+    voidExpected = mapbox::base::deleteFile(invalidPath);
     assert(!voidExpected);
     assert(voidExpected.error() == std::string("Failed to delete file 'invalid'"));
 

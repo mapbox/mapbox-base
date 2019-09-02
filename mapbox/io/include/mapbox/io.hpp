@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 
 #include <ghc/filesystem.hpp>
@@ -9,7 +11,7 @@
 #include <sstream>
 
 namespace mapbox {
-namespace util {
+namespace base {
 
 using ErrorType = std::string;
 
@@ -65,5 +67,5 @@ nonstd::expected<void, ErrorType> copyFile(const ghc::filesystem::path& sourcePa
     return writeFile(destinationPath, *contents);
 }
 
-} // namespace util
+} // namespace base
 } // namespace mapbox

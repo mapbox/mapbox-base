@@ -1,4 +1,4 @@
-#include <mapbox/weak.hpp>
+#include "../mapbox/weak/include/mapbox/weak.hpp"
 
 #include <atomic>
 #include <chrono>

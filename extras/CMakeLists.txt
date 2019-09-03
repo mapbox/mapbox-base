@@ -28,15 +28,6 @@ execute_process(
 mapbox_base_extras_add_library(args ${CMAKE_CURRENT_LIST_DIR}/args)
 mapbox_base_extras_add_library(expected-lite ${CMAKE_CURRENT_LIST_DIR}/expected-lite/include)
 mapbox_base_extras_add_library(filesystem ${CMAKE_CURRENT_LIST_DIR}/filesystem/include)
-mapbox_base_extras_add_library(rapidjson ${CMAKE_CURRENT_LIST_DIR}/rapidjson/include)
-target_compile_definitions(mapbox-base-extras-rapidjson INTERFACE
-    RAPIDJSON_HAS_STDSTRING=1
-)
-
-if(WIN32)
-    target_compile_definitions(mapbox-base-extras-rapidjson INTERFACE
-        RAPIDJSON_HAS_CXX11_RVALUE_REFS
-    )
-endif()
-
 mapbox_base_extras_add_library(kdbush.hpp ${CMAKE_CURRENT_LIST_DIR}/kdbush.hpp/include)
+
+include(${CMAKE_CURRENT_LIST_DIR}/rapidjson.cmake)

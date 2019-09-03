@@ -1,3 +1,7 @@
+if(TARGET mapbox-base)
+    return()
+endif()
+
 function(mapbox_base_add_library name include_path)
     if(TARGET mapbox-base-${name})
         return()
@@ -23,10 +27,11 @@ execute_process(
 
 mapbox_base_add_library(geojson.hpp ${CMAKE_CURRENT_LIST_DIR}/geojson.hpp/include)
 mapbox_base_add_library(geometry.hpp ${CMAKE_CURRENT_LIST_DIR}/geometry.hpp/include)
-mapbox_base_add_library(io ${CMAKE_CURRENT_LIST_DIR}/io/include)
 mapbox_base_add_library(jni.hpp ${CMAKE_CURRENT_LIST_DIR}/jni.hpp/include)
 mapbox_base_add_library(optional ${CMAKE_CURRENT_LIST_DIR}/optional)
 mapbox_base_add_library(pixelmatch-cpp ${CMAKE_CURRENT_LIST_DIR}/pixelmatch-cpp/include)
 mapbox_base_add_library(supercluster.hpp ${CMAKE_CURRENT_LIST_DIR}/supercluster.hpp/include)
 mapbox_base_add_library(variant ${CMAKE_CURRENT_LIST_DIR}/variant/include)
 mapbox_base_add_library(weak ${CMAKE_CURRENT_LIST_DIR}/weak/include)
+
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/io)

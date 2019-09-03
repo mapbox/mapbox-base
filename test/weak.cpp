@@ -2,8 +2,10 @@
 
 #include <atomic>
 #include <chrono>
+#include <ctime>
 #include <memory>
 #include <thread>
+#include <vector>
 
 namespace {
 
@@ -49,6 +51,45 @@ void testLock() {
     assert(!weak1);
     assert(!weak2);
     assert(g_i == 3);
+}
+
+void testMultipleLock() {
+    using namespace std::chrono_literals;
+    using std::chrono::system_clock;
+
+    static std::atomic_int g_i;
+    struct TestLock {
+        void inc() { ++g_i; }
+        mapbox::base::WeakPtrFactory<TestLock> factory_{this};
+    };
+
+    std::time_t now = system_clock::to_time_t(system_clock::now());
+
+    struct std::tm* tm = std::localtime(&now);
+    ++tm->tm_sec; // Wait for the next second.
+    auto nextSecond = system_clock::from_time_t(mktime(tm));
+
+    auto t = std::make_unique<TestLock>();
+
+    const size_t threadsCount = 50u;
+
+    std::vector<std::thread> threads;
+    threads.reserve(threadsCount);
+
+    for (size_t i = 0; i < threadsCount; ++i) {
+        std::thread thread([nextSecond, weak = t->factory_.makeWeakPtr()] {
+            auto guard = weak.lock();
+            std::this_thread::sleep_until(nextSecond);
+            weak->inc();
+        });
+        threads.emplace_back(std::move(thread));
+    }
+
+    t.reset();
+    for (auto& thread : threads) {
+        thread.join();
+    }
+    assert(g_i == threadsCount);
 }
 
 void testWeakMethod() {
@@ -115,6 +156,7 @@ void testWeakMethodBlock() {
 
 int main() {
     testLock();
+    testMultipleLock();
     testWeakMethod();
     testWeakMethodBlock();
     return 0;

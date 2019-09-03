@@ -19,20 +19,32 @@ class WeakPtrSharedData {
 public:
     WeakPtrSharedData() = default;
 
-    void sharedLock() { mutex_.lock_shared(); }
-
-    void sharedUnlock() { mutex_.unlock_shared(); }
-
-    void invalidate() {
-        std::lock_guard<std::shared_timed_mutex> lock(mutex_);
-        valid_ = false;
+    void sharedLock() {
+        assert(valid());
+        sharedLocks_++;
     }
 
-    bool valid() const { return valid_; }
+    void sharedUnlock() {
+        assert(valid());
+        assert(sharedLocks_ > 0u);
+        sharedLocks_--;
+    }
+
+    void invalidate() {
+        assert(valid());
+        std::size_t noLocks = 0u;
+        while (!sharedLocks_.compare_exchange_weak(noLocks, kInvalidValue)) {
+            assert(noLocks != kInvalidValue);
+            noLocks = 0u;
+        }
+        assert(!valid());
+    }
+
+    bool valid() const { return sharedLocks_ != kInvalidValue; }
 
 private:
-    std::shared_timed_mutex mutex_; // Blocks on WeakPtrFactory destruction.
-    std::atomic<bool> valid_{true};
+    static constexpr size_t kInvalidValue = std::numeric_limits<std::size_t>::max();
+    std::atomic_size_t sharedLocks_{0u};
 };
 
 using StrongRef = std::shared_ptr<WeakPtrSharedData>;
@@ -318,7 +330,7 @@ public:
      *      std::function<void(int)> makeWeakFoo() {
      *	        return weakFactory.makeWeakMethod(&Object::foo);
      *      }
-     *      mbauto::WeakPtrFactory<Object> weakFactory{this};
+     *      mapbox::base::WeakPtrFactory<Object> weakFactory{this};
      *  };
      * \endcode
      *

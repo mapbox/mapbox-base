@@ -13,4 +13,4 @@ set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/extras)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mapbox)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/test)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/test EXCLUDE_FROM_ALL)

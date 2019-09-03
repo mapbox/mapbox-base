@@ -19,5 +19,8 @@ script:
   - clang-format -i $(git ls-files *.hpp *.cpp |xargs -L1 -i find {} -type f -maxdepth 0) && git diff --exit-code
   - mkdir build && cd build
   - cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_CLANG_TIDY=clang-tidy
-  - cmake --build .
+  - cmake --build . --target include-test-bundle
+  - cmake --build . --target include-test-targets
+  - cmake --build . --target io-test
+  - cmake --build . --target weak-test
   - ctest -V

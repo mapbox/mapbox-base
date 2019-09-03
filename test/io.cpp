@@ -1,4 +1,4 @@
-#include "../mapbox/io/include/mapbox/io.hpp"
+#include <mapbox/io.hpp>
 
 #include "io_delete.hpp"
 
@@ -13,32 +13,32 @@ int main() {
 
     std::string bar("bar");
 
-    nonstd::expected<void, std::string> voidExpected = mapbox::base::writeFile(path, bar);
+    nonstd::expected<void, std::string> voidExpected = mapbox::base::io::writeFile(path, bar);
     assert(voidExpected);
 
-    voidExpected = mapbox::base::writeFile(unauthorizedPath, bar);
+    voidExpected = mapbox::base::io::writeFile(unauthorizedPath, bar);
     assert(!voidExpected);
     assert(voidExpected.error() == std::string("Failed to write file '/root/unauthorized'"));
 
-    nonstd::expected<std::string, std::string> stringExpected = mapbox::base::readFile(path);
+    nonstd::expected<std::string, std::string> stringExpected = mapbox::base::io::readFile(path);
     assert(stringExpected);
     assert(*stringExpected == bar);
 
-    stringExpected = mapbox::base::readFile(invalidPath);
+    stringExpected = mapbox::base::io::readFile(invalidPath);
     assert(!stringExpected);
     assert(stringExpected.error() == std::string("Failed to read file 'invalid'"));
 
-    voidExpected = mapbox::base::copyFile(path, copyPath);
+    voidExpected = mapbox::base::io::copyFile(path, copyPath);
     assert(voidExpected);
 
-    stringExpected = mapbox::base::readFile(copyPath);
+    stringExpected = mapbox::base::io::readFile(copyPath);
     assert(*stringExpected == bar);
 
-    voidExpected = mapbox::base::copyFile(path, unauthorizedPath);
+    voidExpected = mapbox::base::io::copyFile(path, unauthorizedPath);
     assert(!voidExpected);
     assert(voidExpected.error() == std::string("Failed to write file '/root/unauthorized'"));
 
-    voidExpected = mapbox::base::copyFile(invalidPath, path);
+    voidExpected = mapbox::base::io::copyFile(invalidPath, path);
     assert(!voidExpected);
     assert(voidExpected.error() == std::string("Failed to read file 'invalid'"));
 

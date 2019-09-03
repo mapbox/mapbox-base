@@ -1,3 +1,7 @@
+if(TARGET mapbox-base-extras)
+    return()
+endif()
+
 function(mapbox_base_extras_add_library name include_path)
     if(TARGET mapbox-base-extras-${name})
         return()

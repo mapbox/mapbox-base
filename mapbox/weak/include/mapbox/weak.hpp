@@ -50,7 +50,7 @@ private:
 using StrongRef = std::shared_ptr<WeakPtrSharedData>;
 using WeakRef = std::weak_ptr<WeakPtrSharedData>;
 
-template <typename Object>
+template <typename T>
 class WeakPtrBase;
 
 } // namespace internal
@@ -80,7 +80,7 @@ private:
     }
     internal::StrongRef strong_;
 
-    template <typename Object>
+    template <typename T>
     friend class internal::WeakPtrBase;
 };
 
@@ -96,17 +96,17 @@ namespace internal {
  *
  * \sa WeakPtr
  *
- * @tparam Object the managed object type
+ * @tparam T the managed object type
  */
-template <typename Object>
+template <typename T>
 class WeakPtrBase {
 public:
     /**
-     * Gets a lock that protects the Object, giving
+     * Gets a lock that protects the managed object, giving
      * the guarantee that it will not be deleted (if not
      * deleted yet).
      *
-     * Note that it won't make the Object thread-safe, but
+     * Note that it won't make the managed object thread-safe, but
      * rather make sure it exists (or not) when the lock
      * is being held.
      *
@@ -126,7 +126,7 @@ public:
     }
 
     /**
-     * @brief Quick nonblocking check that the wrapped Object still exists.
+     * @brief Quick nonblocking check that the managed object still exists.
      *
      * Checks if the weak pointer is still pointing to a valid
      * object. Note that if the WeakPtrFactory lives in a different
@@ -145,7 +145,7 @@ public:
     }
 
     /**
-     * @brief Quick nonblocking check that the wrapped Object still exists.
+     * @brief Quick nonblocking check that the managed object still exists.
      *
      * \sa expired()
      *
@@ -154,18 +154,18 @@ public:
      */
     explicit operator bool() const { return !expired(); }
 
-protected:
     /**
-     * Get a pointer to the wrapped object.
-     * The caller *MUST* call lock() and keep locker, then
-     * check if it was nulled before using it.
+     * Get a raw pointer to the managed object.
+     *
+     * In multi-threaded environment, the caller *MUST* call
+     * lock() and keep locker, before using it.
      *
      * Usage should be as brief as possible, because it might
-     * potentially block the thread where the Object lives.
+     * potentially block the thread where the managed object lives.
      *
      * @return pointer to the object, nullptr if expired.
      */
-    Object* object() const {
+    T* get() const {
         if (StrongRef strong = weak_.lock()) {
             if (strong->valid()) {
                 return ptr_;
@@ -173,14 +173,15 @@ protected:
         }
         return nullptr;
     }
+
+protected:
     /// @cond internal
     WeakPtrBase() = default;
     WeakPtrBase(WeakPtrBase&&) noexcept = default;
     WeakPtrBase(const WeakPtrBase&) noexcept = default;
     template <typename U> // NOLINTNEXTLINE
-    WeakPtrBase(WeakPtrBase<U>&& other) noexcept
-        : weak_(std::move(other.weak_)), ptr_(static_cast<Object*>(other.ptr_)) {}
-    explicit WeakPtrBase(WeakRef weak, Object* ptr) : weak_(std::move(weak)), ptr_(ptr) { assert(ptr_); }
+    WeakPtrBase(WeakPtrBase<U>&& other) noexcept : weak_(std::move(other.weak_)), ptr_(static_cast<T*>(other.ptr_)) {}
+    explicit WeakPtrBase(WeakRef weak, T* ptr) : weak_(std::move(weak)), ptr_(ptr) { assert(ptr_); }
     WeakPtrBase& operator=(WeakPtrBase&& other) noexcept = default;
     WeakPtrBase& operator=(const WeakPtrBase& other) = default;
 
@@ -188,8 +189,8 @@ protected:
 
 private:
     WeakRef weak_;
-    Object* ptr_{};
-    template <typename T>
+    T* ptr_{};
+    template <typename U>
     friend class WeakPtrBase;
     /// @endcond
 };
@@ -200,14 +201,14 @@ private:
  * @brief Default implementation of a weak pointer to an object.
  *
  * Weak pointers are safe to access even if the
- * pointer outlives the Object this class wraps.
+ * pointer outlives the object, which this class wraps.
  *
  * This class will manage only object lifetime
  * but will not deal with thread-safeness of the
  * objects it is wrapping.
  */
-template <typename Object>
-class WeakPtr final : public internal::WeakPtrBase<Object> {
+template <typename T>
+class WeakPtr final : public internal::WeakPtrBase<T> {
 public:
     /**
      * @brief Default constructor.
@@ -221,11 +222,11 @@ public:
      *
      * \a other becomes empty after the call.
      *
-     * @tparam U a type, which \c Object is convertible to
+     * @tparam U a type, which \c T is convertible to
      * @param other \c WeakPtr<U> instance
      */
     template <typename U> // NOLINTNEXTLINE
-    WeakPtr(WeakPtr<U>&& other) noexcept : internal::WeakPtrBase<Object>(std::move(other)) {}
+    WeakPtr(WeakPtr<U>&& other) noexcept : internal::WeakPtrBase<T>(std::move(other)) {}
 
     /**
      * @brief Default move constructor.
@@ -260,29 +261,29 @@ public:
      *
      * Must not be called on empty \c WeakPtr.
      *
-     * @return Object*  the stored pointer.
+     * @return T*  the stored pointer.
      */
-    Object* operator->() const {
-        Object* ptr = this->object();
+    T* operator->() const {
+        T* ptr = this->get();
         assert(ptr);
         return ptr;
     }
 
 private:
-    explicit WeakPtr(internal::WeakRef weak, Object* object) : internal::WeakPtrBase<Object>(std::move(weak), object) {}
+    explicit WeakPtr(internal::WeakRef weak, T* object) : internal::WeakPtrBase<T>(std::move(weak), object) {}
 
-    template <typename T>
+    template <typename U>
     friend class WeakPtrFactory;
 };
 
 /**
- * @brief Object wrapper that can create weak pointers.
+ * @brief T wrapper that can create weak pointers.
  *
  * WARNING: the WeakPtrFactory should all be at the bottom of
  * the list of member of the class, making it the first to
  * be destroyed and the last to be initialized.
  */
-template <typename Object>
+template <typename T>
 class WeakPtrFactory final {
 public:
     WeakPtrFactory(const WeakPtrFactory&) = delete;
@@ -291,9 +292,9 @@ public:
     /**
      * @brief Construct a new \c WeakPtrFactory object.
      *
-     * @param obj an \c Object instance to wrap.
+     * @param obj an \c T instance to wrap.
      */
-    explicit WeakPtrFactory(Object* obj) : strong_(std::make_shared<internal::WeakPtrSharedData>()), obj_(obj) {}
+    explicit WeakPtrFactory(T* obj) : strong_(std::make_shared<internal::WeakPtrSharedData>()), obj_(obj) {}
 
     /**
      * Destroys the factory, invalidating all the
@@ -303,45 +304,45 @@ public:
 
     /**
      * Make a weak pointer for this WeakPtrFactory. Weak pointer
-     * can be used for safely accessing the Object and not worry
+     * can be used for safely accessing the T object and not worry
      * about lifetime.
      *
      * @return a weak pointer.
      */
-    WeakPtr<Object> makeWeakPtr() { return WeakPtr<Object>{strong_, obj_}; }
+    WeakPtr<T> makeWeakPtr() { return WeakPtr<T>{strong_, obj_}; }
 
     /**
      * @brief Makes a weak wrapper for calling a method on the wrapped
-     * \c Object instance.
+     * \c T instance.
      *
-     * While the wrapped \c Object instance exists, calling the returned wrapper is
+     * While the wrapped \c T instance exists, calling the returned wrapper is
      * equivalent to invoking \a method on the instance. Note that the instance deletion
      * is blocked during the wrapper call.
      *
-     * If the wrapped \c Object instance does not exist, calling the returned wrapper
+     * If the wrapped \c T instance does not exist, calling the returned wrapper
      * is ignored.
      *
      * The example below illustrates creating an \c std::function instance from the
      * returned wrapper.
      *
      * \code
-     *  class Object {
+     *  class T {
      *      void foo(int);
      *      std::function<void(int)> makeWeakFoo() {
-     *	        return weakFactory.makeWeakMethod(&Object::foo);
+     *	        return weakFactory.makeWeakMethod(&T::foo);
      *      }
-     *      mapbox::base::WeakPtrFactory<Object> weakFactory{this};
+     *      mapbox::base::WeakPtrFactory<T> weakFactory{this};
      *  };
      * \endcode
      *
-     * @param method Pointer to an \c Object class method.
+     * @param method Pointer to an \c T class method.
      * @return auto Callable object
      */
     template <typename Method>
     auto makeWeakMethod(Method method) {
         return [weakPtr = makeWeakPtr(), method](auto&&... params) mutable {
             WeakPtrGuard guard = weakPtr.lock();
-            if (Object* obj = weakPtr.object()) {
+            if (T* obj = weakPtr.get()) {
                 (obj->*method)(std::forward<decltype(params)>(params)...);
             }
         };
@@ -349,7 +350,7 @@ public:
 
 private:
     internal::StrongRef strong_;
-    Object* obj_;
+    T* obj_;
 };
 
 } // namespace base

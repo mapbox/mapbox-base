@@ -11,5 +11,4 @@ target_include_directories(mapbox-base-io SYSTEM PUBLIC
 
 target_link_libraries(mapbox-base-io PRIVATE
     Mapbox::Base::Extras::expected-lite
-    Mapbox::Base::Extras::filesystem
 )

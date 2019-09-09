@@ -5,7 +5,7 @@
 #include <cassert>
 #include <string>
 
-void deleteTests(const fspath& path, const fspath& copyPath, const fspath& invalidPath) {
+void deleteTests(const std::string& path, const std::string& copyPath, const std::string& invalidPath) {
     nonstd::expected<void, std::string> voidExpected;
 
     voidExpected = mapbox::base::io::deleteFile(path);

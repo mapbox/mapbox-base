@@ -23,4 +23,5 @@ script:
   - cmake --build . --target include-test-targets
   - cmake --build . --target io-test
   - cmake --build . --target weak-test
+  - cmake --build . --target typewrapper-test
   - ctest -V

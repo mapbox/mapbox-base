@@ -32,6 +32,7 @@ target_link_libraries(include-test-targets PRIVATE
     Mapbox::Base::supercluster.hpp
     Mapbox::Base::variant
     Mapbox::Base::weak
+    Mapbox::Base::typewrapper
 )
 
 target_include_directories(include-test-targets SYSTEM PRIVATE
@@ -48,6 +49,8 @@ add_executable(io-test
 
 add_executable(weak-test ${CMAKE_CURRENT_LIST_DIR}/weak.cpp)
 
+add_executable(typewrapper-test ${CMAKE_CURRENT_LIST_DIR}/type_wrapper.cpp)
+
 target_link_libraries(io-test PRIVATE
     Mapbox::Base::io
     Mapbox::Base::Extras::expected-lite
@@ -59,8 +62,13 @@ target_link_libraries(weak-test PRIVATE
     pthread
 )
 
+target_link_libraries(typewrapper-test PRIVATE
+    Mapbox::Base::typewrapper
+)
+
 add_test(NAME io-test COMMAND io-test)
 add_test(NAME weak-test COMMAND weak-test)
+add_test(NAME typewrapper-test COMMAND typewrapper-test)
 
 add_definitions(-DTEST_FIXTURES_PATH="${CMAKE_CURRENT_LIST_DIR}/fixtures/")
 add_definitions(-DTEST_BINARY_PATH="${CMAKE_CURRENT_BINARY_DIR}/")

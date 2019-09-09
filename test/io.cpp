@@ -1,3 +1,4 @@
+#include <ghc/filesystem.hpp>
 #include <mapbox/io.hpp>
 
 #include "io_delete.hpp"
@@ -13,14 +14,14 @@ int main() {
 
     std::string bar("bar");
 
-    nonstd::expected<void, std::string> voidExpected = mapbox::base::io::writeFile(path, bar);
+    nonstd::expected<void, std::string> voidExpected = mapbox::base::io::writeFile(path.string(), bar);
     assert(voidExpected);
 
     voidExpected = mapbox::base::io::writeFile(unauthorizedPath, bar);
     assert(!voidExpected);
     assert(voidExpected.error() == std::string("Failed to write file '/root/unauthorized'"));
 
-    nonstd::expected<std::string, std::string> stringExpected = mapbox::base::io::readFile(path);
+    nonstd::expected<std::string, std::string> stringExpected = mapbox::base::io::readFile(path.string());
     assert(stringExpected);
     assert(*stringExpected == bar);
 
@@ -28,20 +29,20 @@ int main() {
     assert(!stringExpected);
     assert(stringExpected.error() == std::string("Failed to read file 'invalid'"));
 
-    voidExpected = mapbox::base::io::copyFile(path, copyPath);
+    voidExpected = mapbox::base::io::copyFile(path.string(), copyPath);
     assert(voidExpected);
 
     stringExpected = mapbox::base::io::readFile(copyPath);
     assert(*stringExpected == bar);
 
-    voidExpected = mapbox::base::io::copyFile(path, unauthorizedPath);
+    voidExpected = mapbox::base::io::copyFile(path.string(), unauthorizedPath);
     assert(!voidExpected);
     assert(voidExpected.error() == std::string("Failed to write file '/root/unauthorized'"));
 
-    voidExpected = mapbox::base::io::copyFile(invalidPath, path);
+    voidExpected = mapbox::base::io::copyFile(invalidPath, path.string());
     assert(!voidExpected);
     assert(voidExpected.error() == std::string("Failed to read file 'invalid'"));
 
-    deleteTests(path, copyPath, invalidPath);
+    deleteTests(path.string(), copyPath, invalidPath);
     return 0;
 }

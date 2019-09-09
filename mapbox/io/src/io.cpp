@@ -9,12 +9,12 @@ namespace mapbox {
 namespace base {
 namespace io {
 
-nonstd::expected<std::string, ErrorType> readFile(const ghc::filesystem::path& filename) {
+nonstd::expected<std::string, ErrorType> readFile(const std::string& filename) {
     nonstd::expected<std::string, ErrorType> result;
 
-    std::ifstream file(filename.string(), std::ios::binary);
+    std::ifstream file(filename, std::ios::binary);
     if (!file.good()) {
-        return nonstd::make_unexpected(std::string("Failed to read file '") + filename.string() + std::string("'"));
+        return nonstd::make_unexpected(std::string("Failed to read file '") + filename + std::string("'"));
     }
 
     std::stringstream data;
@@ -23,12 +23,12 @@ nonstd::expected<std::string, ErrorType> readFile(const ghc::filesystem::path& f
     return result;
 }
 
-nonstd::expected<void, ErrorType> writeFile(const ghc::filesystem::path& filename, const std::string& data) {
+nonstd::expected<void, ErrorType> writeFile(const std::string& filename, const std::string& data) {
     nonstd::expected<void, ErrorType> result;
 
     std::ofstream file(filename, std::ios::binary);
     if (!file.good()) {
-        return nonstd::make_unexpected(std::string("Failed to write file '") + filename.string() + std::string("'"));
+        return nonstd::make_unexpected(std::string("Failed to write file '") + filename + std::string("'"));
     }
 
     file << data;
@@ -36,19 +36,18 @@ nonstd::expected<void, ErrorType> writeFile(const ghc::filesystem::path& filenam
     return result;
 }
 
-nonstd::expected<void, ErrorType> deleteFile(const ghc::filesystem::path& filename) {
+nonstd::expected<void, ErrorType> deleteFile(const std::string& filename) {
     nonstd::expected<void, ErrorType> result;
 
-    const int ret = std::remove(filename.string().c_str());
+    const int ret = std::remove(filename.c_str());
     if (ret != 0) {
-        return nonstd::make_unexpected(std::string("Failed to delete file '") + filename.string() + std::string("'"));
+        return nonstd::make_unexpected(std::string("Failed to delete file '") + filename + std::string("'"));
     }
 
     return result;
 }
 
-nonstd::expected<void, ErrorType> copyFile(const ghc::filesystem::path& sourcePath,
-                                           const ghc::filesystem::path& destinationPath) {
+nonstd::expected<void, ErrorType> copyFile(const std::string& sourcePath, const std::string& destinationPath) {
     auto contents = readFile(sourcePath);
     if (!contents) {
         return nonstd::make_unexpected(contents.error());

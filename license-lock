@@ -1,0 +1,73 @@
+[
+  {
+    "path": "extras/kdbush.hpp",
+    "licenseFile": "LICENSE",
+    "hash": "eeb9c9d04d930512cec46a5d7c08f418af9fbc50ebf481f09fcebcdf3fbb941c",
+    "action": "file"
+  },
+  {
+    "path": "extras/args",
+    "licenseFile": "LICENSE",
+    "hash": "e0c9f11d6dfec641f099a0a153358b8b9954a86a61c64c89db3a75d5d282852a",
+    "action": "file"
+  },
+  {
+    "path": "extras/expected-lite",
+    "licenseFile": "LICENSE.txt",
+    "hash": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+    "action": "file"
+  },
+  {
+    "path": "extras/filesystem",
+    "licenseFile": "LICENSE",
+    "hash": "84ea1547a1a47dff3f1fcf461e778c0fa8749f52882b81df4a01a1b2afb0ec6c",
+    "action": "file" },
+  {
+    "path": "mapbox/geometry.hpp",
+    "licenseFile": "LICENSE",
+    "hash": "44b7f71c4d7f3da85e5e6a5d0cfa6942055d326a24f4d60a3728ebed26ea2b9d",
+    "action": "file"
+  },
+  {
+    "path": "mapbox/optional",
+    "licenseFile": "LICENSE",
+    "hash": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+    "action": "file"
+  },
+  {
+    "path": "mapbox/pixelmatch-cpp",
+    "licenseFile": "LICENSE.txt",
+    "hash": "6c7e3e75cd5368e6a552a2e94db1a50080c0b2972d1d2364144227b047a6e18c",
+    "action": "file"
+  },
+  {
+    "path": "extras/rapidjson",
+    "licenseFile": "license.txt",
+    "hash": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32",
+    "action": "file"
+  },
+  {
+    "path": "mapbox/variant",
+    "licenseFile": "LICENSE",
+    "hash": "7686f81e580cd6774f609a2d8a41b2cebdf79bc30e6b46c3efff5a656158981c",
+    "action": "file"
+  },
+  {
+    "path": "mapbox/geojson.hpp",
+    "licenseFile": "LICENSE",
+    "hash": "e2bf3affd357261f7451bb19108281c1bde54746bfa2beb0c1c34ab042b21700",
+    "action": "file"
+  },
+  {
+    "path": "mapbox/jni.hpp",
+    "licenseFile": "LICENSE.txt",
+    "hash":"640f62b4b6e940645b96d12416e6db84ed191ebcfd10c3a0ccc9a1338f222726",
+    "action": "file"
+  },
+  {
+    "path": "mapbox/supercluster.hpp",
+    "licenseFile": "LICENSE",
+    "hash":"e2bf3affd357261f7451bb19108281c1bde54746bfa2beb0c1c34ab042b21700",
+    "action": "file"
+  }
+]

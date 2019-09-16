@@ -93,6 +93,10 @@ function generateLockFileForRepo(repoPath): Promise<LockFile> {
         });
 }
 
+function lockFileToString(lockFile) {
+    return JSON.stringify(lockFile, null, 2);
+}
+
 
 function checkLicenses(repoPath) {
     Promise.all([loadLockFile(repoPath), generateLockFileForRepo(repoPath)])
@@ -157,11 +161,12 @@ function licenseText(projName, repoPath) {
         });
 }
 
+
 yargs
     .command('generate [path]',
              'automatically generate a new lock file for repository',
              (yargs) => yargs.positional('path', {describe: 'path to git repository', default: './'}),
-             (argv) => generateLockFileForRepo(argv.path).then((lf) => console.log(lf)))
+             (argv) => generateLockFileForRepo(argv.path).then((lf) => console.log(lockFileToString(lf))))
     .command('check [path]',
              'check licenses against repository\'s lock file',
              (yargs) => yargs.positional('path', {describe: 'path to git repository', default: './'}),

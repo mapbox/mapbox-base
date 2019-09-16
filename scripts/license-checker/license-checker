@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+const path = require('path');
+const include = path.dirname(require.resolve('./main'));
+
+require('@mapbox/flow-remove-types/register')({include});
+require('esm')(module)('./main');

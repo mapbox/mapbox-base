@@ -1,0 +1,21 @@
+{
+  "name": "license-checker",
+  "version": "0.0.1",
+  "description": "Tool for generating a LICENSE file and checking for changes",
+  "bin": "license-checker",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "flow": "flow"
+  },
+  "author": "",
+  "license": "SEE LICENSE IN ../../LICENSE.md",
+  "dependencies": {
+    "@mapbox/flow-remove-types": "^1.3.0-await.upstream.2",
+    "esm": "^3.2.25",
+    "nodegit": "^0.24.3",
+    "yargs": "^13.3.0"
+  },
+  "devDependencies": {
+    "flow-bin": "0.93.0"
+  }
+}

@@ -1,5 +1,7 @@
 # Needed for obtaining path to jni.h header.
 get_property(JNI_HPP_INCLUDE_PATH TARGET Mapbox::Base::jni.hpp PROPERTY INTERFACE_INCLUDE_DIRECTORIES)
+get_filename_component(JNI_BASE_DIRECTORY_PATH ${JNI_HPP_INCLUDE_PATH} DIRECTORY)
+
 
 add_executable(include-test-bundle
     ${CMAKE_CURRENT_LIST_DIR}/include.cpp
@@ -10,8 +12,9 @@ target_link_libraries(include-test-bundle PRIVATE
     Mapbox::Base::Extras
 )
 
+
 target_include_directories(include-test-bundle SYSTEM PRIVATE
-    ${JNI_HPP_INCLUDE_PATH}/../test/android
+    ${JNI_BASE_DIRECTORY_PATH}/test/android
 )
 
 add_executable(include-test-targets
@@ -36,7 +39,7 @@ target_link_libraries(include-test-targets PRIVATE
 )
 
 target_include_directories(include-test-targets SYSTEM PRIVATE
-    ${JNI_HPP_INCLUDE_PATH}/../test/android
+    ${JNI_BASE_DIRECTORY_PATH}/test/android
 )
 
 add_test(NAME include-test-bundle COMMAND include-test-bundle)

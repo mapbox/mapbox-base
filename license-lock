@@ -21,7 +21,8 @@
     "path": "extras/filesystem",
     "licenseFile": "LICENSE",
     "hash": "84ea1547a1a47dff3f1fcf461e778c0fa8749f52882b81df4a01a1b2afb0ec6c",
-    "action": "file" },
+    "action": "file"
+  },
   {
     "path": "mapbox/geometry.hpp",
     "licenseFile": "LICENSE",
@@ -61,13 +62,31 @@
   {
     "path": "mapbox/jni.hpp",
     "licenseFile": "LICENSE.txt",
-    "hash":"640f62b4b6e940645b96d12416e6db84ed191ebcfd10c3a0ccc9a1338f222726",
+    "hash": "640f62b4b6e940645b96d12416e6db84ed191ebcfd10c3a0ccc9a1338f222726",
     "action": "file"
   },
   {
     "path": "mapbox/supercluster.hpp",
     "licenseFile": "LICENSE",
-    "hash":"e2bf3affd357261f7451bb19108281c1bde54746bfa2beb0c1c34ab042b21700",
+    "hash": "e2bf3affd357261f7451bb19108281c1bde54746bfa2beb0c1c34ab042b21700",
+    "action": "file"
+  },
+  {
+    "path": "mapbox/io",
+    "licenseFile": "LICENSE",
+    "hash": "7686f81e580cd6774f609a2d8a41b2cebdf79bc30e6b46c3efff5a656158981c",
+    "action": "file"
+  },
+  {
+    "path": "mapbox/typewrapper",
+    "licenseFile": "LICENSE",
+    "hash": "7686f81e580cd6774f609a2d8a41b2cebdf79bc30e6b46c3efff5a656158981c",
+    "action": "file"
+  },
+  {
+    "path": "mapbox/weak",
+    "licenseFile": "LICENSE",
+    "hash": "7686f81e580cd6774f609a2d8a41b2cebdf79bc30e6b46c3efff5a656158981c",
     "action": "file"
   }
 ]

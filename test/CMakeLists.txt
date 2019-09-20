@@ -36,6 +36,7 @@ target_link_libraries(include-test-targets PRIVATE
     Mapbox::Base::variant
     Mapbox::Base::weak
     Mapbox::Base::typewrapper
+    Mapbox::Base::value
 )
 
 target_include_directories(include-test-targets SYSTEM PRIVATE
@@ -49,10 +50,9 @@ add_executable(io-test
     ${CMAKE_CURRENT_LIST_DIR}/io.cpp
     ${CMAKE_CURRENT_LIST_DIR}/io_delete.cpp
 )
-
 add_executable(weak-test ${CMAKE_CURRENT_LIST_DIR}/weak.cpp)
-
 add_executable(typewrapper-test ${CMAKE_CURRENT_LIST_DIR}/type_wrapper.cpp)
+add_executable(value-test ${CMAKE_CURRENT_LIST_DIR}/value.cpp)
 
 target_link_libraries(io-test PRIVATE
     Mapbox::Base::io
@@ -69,9 +69,14 @@ target_link_libraries(typewrapper-test PRIVATE
     Mapbox::Base::typewrapper
 )
 
+target_link_libraries(value-test PRIVATE
+    Mapbox::Base::value
+)
+
 add_test(NAME io-test COMMAND io-test)
 add_test(NAME weak-test COMMAND weak-test)
 add_test(NAME typewrapper-test COMMAND typewrapper-test)
+add_test(NAME value-test COMMAND value-test)
 
 add_definitions(-DTEST_FIXTURES_PATH="${CMAKE_CURRENT_LIST_DIR}/fixtures/")
 add_definitions(-DTEST_BINARY_PATH="${CMAKE_CURRENT_BINARY_DIR}/")

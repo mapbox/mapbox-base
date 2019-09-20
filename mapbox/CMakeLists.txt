@@ -34,5 +34,7 @@ mapbox_base_add_library(supercluster.hpp ${CMAKE_CURRENT_LIST_DIR}/supercluster.
 mapbox_base_add_library(variant ${CMAKE_CURRENT_LIST_DIR}/variant/include)
 mapbox_base_add_library(weak ${CMAKE_CURRENT_LIST_DIR}/weak/include)
 mapbox_base_add_library(typewrapper ${CMAKE_CURRENT_LIST_DIR}/typewrapper/include)
-
+mapbox_base_add_library(value ${CMAKE_CURRENT_LIST_DIR}/value/include)
+target_link_libraries(mapbox-base-value INTERFACE mapbox-base-geometry.hpp)
+target_link_libraries(mapbox-base-value INTERFACE mapbox-base-variant)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/io)

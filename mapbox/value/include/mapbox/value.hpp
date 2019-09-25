@@ -8,8 +8,7 @@ namespace base {
 using Value = feature::value;
 using ValueArray = Value::array_type;
 using ValueObject = Value::object_type;
-
-using null_value_t = mapbox::feature::null_value_t;
+using NullValue = feature::null_value_t;
 
 } // namespace base
 } // namespace mapbox

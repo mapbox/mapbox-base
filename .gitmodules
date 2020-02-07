@@ -34,3 +34,6 @@
 [submodule "extras/kdbush.hpp"]
 	path = extras/kdbush.hpp
 	url = https://github.com/mourner/kdbush.hpp.git
+[submodule "mapbox/cheap-ruler-cpp"]
+	path = mapbox/cheap-ruler-cpp
+	url = https://github.com/mapbox/cheap-ruler-cpp.git

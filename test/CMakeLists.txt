@@ -37,6 +37,7 @@ target_link_libraries(include-test-targets PRIVATE
     Mapbox::Base::weak
     Mapbox::Base::typewrapper
     Mapbox::Base::value
+    Mapbox::Base::cheap-ruler-cpp
 )
 
 target_include_directories(include-test-targets SYSTEM PRIVATE

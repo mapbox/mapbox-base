@@ -1,3 +1,4 @@
+#include <mapbox/cheap_ruler.hpp>
 #include <mapbox/geojson.hpp>
 #include <mapbox/geometry.hpp>
 #include <mapbox/pixelmatch.hpp>
@@ -21,6 +22,7 @@ int main() {
     jni::jlong jlong;
     mapbox::geojson::geojson geojson;
     mapbox::supercluster::Options superclusterOptions;
+    mapbox::cheap_ruler::CheapRuler cheapRuler(32.00);
 
     rapidjson::Document rapidjsonDocument;
 
@@ -34,6 +36,7 @@ int main() {
     (void)jlong;
     (void)geojson;
     (void)superclusterOptions;
+    (void)cheapRuler;
 
     mapbox::pixelmatch(nullptr, nullptr, 0u, 0u, nullptr, 0.0);
 

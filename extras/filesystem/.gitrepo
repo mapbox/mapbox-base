@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/gulrak/filesystem.git
+	branch = 135015f20b6641140a408d3883c9c820948be1c5
+	commit = 135015f20b6641140a408d3883c9c820948be1c5
+	parent = 87859a6059c729e7e78b1695a871810d57ed3061
+	method = rebase
+	cmdver = 0.4.1

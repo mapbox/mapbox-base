@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mapbox/pixelmatch-cpp.git
+	branch = v0.10.0
+	commit = 61f433cb485d6b08dc7fe97ae5f8717007c7bda1
+	parent = 58d13450b9a9e169646c8b5f8af54aee1e7319cc
+	method = rebase
+	cmdver = 0.4.1

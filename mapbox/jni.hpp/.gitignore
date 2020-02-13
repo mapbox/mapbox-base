@@ -1,0 +1,3 @@
+/examples/*.class
+/examples/*.log
+/build

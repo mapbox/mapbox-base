@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mapbox/jni.hpp.git
+	branch = 385dede669c843144b9ad68bbb7af3989d76104e
+	commit = 385dede669c843144b9ad68bbb7af3989d76104e
+	parent = 02d94f25378f081ed3f84bad171142a0efac105e
+	method = rebase
+	cmdver = 0.4.1

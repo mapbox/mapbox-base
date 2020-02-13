@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mourner/kdbush.hpp.git
+	branch = e1e847bfe97c8cdc09edbe87a4e74babc512d18d
+	commit = e1e847bfe97c8cdc09edbe87a4e74babc512d18d
+	parent = 1903e0b56a6f4555562e2213d49b67c4e5c088e3
+	method = rebase
+	cmdver = 0.4.1

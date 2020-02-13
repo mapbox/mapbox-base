@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mapbox/Optional.git
+	branch = f6249e7fdcb80131c390a083f1621d96023e72e9
+	commit = f6249e7fdcb80131c390a083f1621d96023e72e9
+	parent = 466043077fb9f4b8ab0f617397f2d15a823151fd
+	method = rebase
+	cmdver = 0.4.1

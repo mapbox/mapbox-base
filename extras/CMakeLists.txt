@@ -20,11 +20,6 @@ endfunction()
 add_library(mapbox-base-extras INTERFACE)
 add_library(Mapbox::Base::Extras ALIAS mapbox-base-extras)
 
-execute_process(
-    COMMAND git submodule update --init
-    WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
-)
-
 mapbox_base_extras_add_library(args ${CMAKE_CURRENT_LIST_DIR}/args)
 mapbox_base_extras_add_library(expected-lite ${CMAKE_CURRENT_LIST_DIR}/expected-lite/include)
 mapbox_base_extras_add_library(filesystem ${CMAKE_CURRENT_LIST_DIR}/filesystem/include)

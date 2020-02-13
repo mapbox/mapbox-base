@@ -20,11 +20,6 @@ endfunction()
 add_library(mapbox-base INTERFACE)
 add_library(Mapbox::Base ALIAS mapbox-base)
 
-execute_process(
-    COMMAND git submodule update --init
-    WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
-)
-
 mapbox_base_add_library(geojson.hpp ${CMAKE_CURRENT_LIST_DIR}/geojson.hpp/include)
 mapbox_base_add_library(geometry.hpp ${CMAKE_CURRENT_LIST_DIR}/geometry.hpp/include)
 mapbox_base_add_library(jni.hpp ${CMAKE_CURRENT_LIST_DIR}/jni.hpp/include)
@@ -36,6 +31,8 @@ mapbox_base_add_library(weak ${CMAKE_CURRENT_LIST_DIR}/weak/include)
 mapbox_base_add_library(typewrapper ${CMAKE_CURRENT_LIST_DIR}/typewrapper/include)
 mapbox_base_add_library(value ${CMAKE_CURRENT_LIST_DIR}/value/include)
 mapbox_base_add_library(cheap-ruler-cpp ${CMAKE_CURRENT_LIST_DIR}/cheap-ruler-cpp/include)
+
 target_link_libraries(mapbox-base-value INTERFACE mapbox-base-geometry.hpp)
 target_link_libraries(mapbox-base-value INTERFACE mapbox-base-variant)
+
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/io)

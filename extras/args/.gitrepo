@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/Taywee/args
+	branch = 401663c1d57006566db6d8e5b37a21018fbd0bc3
+	commit = 401663c1d57006566db6d8e5b37a21018fbd0bc3
+	parent = 2a7b2654d2d34f892795304d9ea73f36fe6261ec
+	method = rebase
+	cmdver = 0.4.1

@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/martinmoene/expected-lite.git
+	branch = 6fad61b14b9ec94efca57505bffea5f5de71cb53
+	commit = 6fad61b14b9ec94efca57505bffea5f5de71cb53
+	parent = f2c57acec1b867a2f09e273b7c6c6b43ddcfd45f
+	method = rebase
+	cmdver = 0.4.1

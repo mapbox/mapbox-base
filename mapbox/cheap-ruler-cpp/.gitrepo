@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mapbox/cheap-ruler-cpp.git
+	branch = 746044cfbb7d254f1d67929eb564a0dcaaa39cc1
+	commit = 746044cfbb7d254f1d67929eb564a0dcaaa39cc1
+	parent = 6a9e0c8bbbab4d8a1cd5ba604b3a106ea5491cd6
+	method = rebase
+	cmdver = 0.4.1

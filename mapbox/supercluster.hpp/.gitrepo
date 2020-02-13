@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mapbox/supercluster.hpp.git
+	branch = 03c026c49c3e25cb4c65f91a308ab869e98f6499
+	commit = 03c026c49c3e25cb4c65f91a308ab869e98f6499
+	parent = c7903dd9cbc0ab54a8babca3c516f1978b78654f
+	method = rebase
+	cmdver = 0.4.1

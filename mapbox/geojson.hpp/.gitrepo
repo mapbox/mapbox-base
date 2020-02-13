@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mapbox/geojson.hpp.git
+	branch = v0.4.3
+	commit = 97f81eadb66f985af4ce59c003bce87186541988
+	parent = e6d6ce637dedfc46f11152a300f9a9af4c5c34e8
+	method = rebase
+	cmdver = 0.4.1

@@ -1,0 +1,38 @@
+language: generic
+sudo: false
+
+matrix:
+  include:
+    - os: linux
+      env: CXX=g++-4.9
+      addons:
+        apt:
+          sources: [ 'ubuntu-toolchain-r-test' ]
+          packages: [ 'g++-4.9' ]
+    - os: linux
+      env: CXX=g++-5
+      addons:
+        apt:
+          sources: [ 'ubuntu-toolchain-r-test' ]
+          packages: [ 'g++-5' ]
+    - os: linux
+      env: CXX=clang++-3.9
+      addons:
+        apt:
+          sources: [ 'ubuntu-toolchain-r-test' ]
+          packages: [ 'libstdc++-5-dev' ]
+
+cache: apt
+
+install:
+  - |
+    if [[ ${CXX} =~ "clang" ]] && [[ $(uname -s) == "Linux" ]]; then
+      ./.mason/mason install clang++ 3.9.1
+      CLANG_PREFIX=$(./.mason/mason prefix clang++ 3.9.1)
+      export PATH=${CLANG_PREFIX}/bin:${PATH}
+      which clang++
+      clang++ -v
+    fi
+
+script:
+ - make test

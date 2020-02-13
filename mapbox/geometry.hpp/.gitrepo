@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/mapbox/geometry.hpp.git
+	branch = a5571a3ace5853e0d1e8d5fbdc87163c824ebeb7
+	commit = a5571a3ace5853e0d1e8d5fbdc87163c824ebeb7
+	parent = cb739799833bd2636117a04700684f08b7d9658c
+	method = rebase
+	cmdver = 0.4.1

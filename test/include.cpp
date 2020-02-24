@@ -1,7 +1,9 @@
 #include <mapbox/cheap_ruler.hpp>
 #include <mapbox/geojson.hpp>
+#include <mapbox/geojsonvt.hpp>
 #include <mapbox/geometry.hpp>
 #include <mapbox/pixelmatch.hpp>
+#include <mapbox/shelf-pack.hpp>
 #include <mapbox/variant.hpp>
 
 #include <rapidjson/document.h>
@@ -23,6 +25,8 @@ int main() {
     mapbox::geojson::geojson geojson;
     mapbox::supercluster::Options superclusterOptions;
     mapbox::cheap_ruler::CheapRuler cheapRuler(32.00);
+    mapbox::geojsonvt::detail::vt_point point(0, 0);
+    mapbox::ShelfPack sprite(64, 64);
 
     rapidjson::Document rapidjsonDocument;
 
@@ -37,6 +41,8 @@ int main() {
     (void)geojson;
     (void)superclusterOptions;
     (void)cheapRuler;
+    (void)sprite;
+    (void)point;
 
     mapbox::pixelmatch(nullptr, nullptr, 0u, 0u, nullptr, 0.0);
 

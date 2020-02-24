@@ -37,3 +37,9 @@
 [submodule "mapbox/cheap-ruler-cpp"]
 	path = mapbox/cheap-ruler-cpp
 	url = https://github.com/mapbox/cheap-ruler-cpp.git
+[submodule "mapbox/shelf-pack-cpp"]
+	path = mapbox/shelf-pack-cpp
+	url = https://github.com/mapbox/shelf-pack-cpp.git
+[submodule "mapbox/geojson-vt-cpp"]
+	path = mapbox/geojson-vt-cpp
+	url = https://github.com/mapbox/geojson-vt-cpp.git

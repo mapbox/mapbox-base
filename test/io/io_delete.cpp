@@ -1,4 +1,6 @@
-#include <mapbox/io.hpp>
+#include <mapbox/io/io.hpp>
+
+#include <gtest/gtest.h>
 
 #include "io_delete.hpp"
 
@@ -9,12 +11,12 @@ void deleteTests(const std::string& path, const std::string& copyPath, const std
     nonstd::expected<void, std::string> voidExpected;
 
     voidExpected = mapbox::base::io::deleteFile(path);
-    assert(voidExpected);
+    EXPECT_TRUE(voidExpected);
 
     voidExpected = mapbox::base::io::deleteFile(copyPath);
-    assert(voidExpected);
+    EXPECT_TRUE(voidExpected);
 
     voidExpected = mapbox::base::io::deleteFile(invalidPath);
-    assert(!voidExpected);
-    assert(voidExpected.error() == std::string("Failed to delete file 'invalid'"));
+    EXPECT_FALSE(voidExpected);
+    EXPECT_EQ(voidExpected.error(), std::string("Failed to delete file 'invalid'"));
 }

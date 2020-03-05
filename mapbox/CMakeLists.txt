@@ -17,8 +17,14 @@ function(mapbox_base_add_library name include_path)
     target_link_libraries(mapbox-base INTERFACE mapbox-base-${name})
 endfunction()
 
+file (GLOB_RECURSE SOURCES_BASE "${CMAKE_CURRENT_LIST_DIR}/include/*.hpp")
 add_library(mapbox-base INTERFACE)
 add_library(Mapbox::Base ALIAS mapbox-base)
+target_include_directories(mapbox-base
+    INTERFACE "${MAPBOX_BASE_EXTRAS}/expected-lite/include"
+    )
+
+    message (${MAPBOX_BASE_EXTRAS})
 
 execute_process(
     COMMAND git submodule update --init
@@ -34,9 +40,6 @@ mapbox_base_add_library(pixelmatch-cpp ${CMAKE_CURRENT_LIST_DIR}/pixelmatch-cpp/
 mapbox_base_add_library(shelf-pack-cpp ${CMAKE_CURRENT_LIST_DIR}/shelf-pack-cpp/include)
 mapbox_base_add_library(supercluster.hpp ${CMAKE_CURRENT_LIST_DIR}/supercluster.hpp/include)
 mapbox_base_add_library(variant ${CMAKE_CURRENT_LIST_DIR}/variant/include)
-mapbox_base_add_library(weak ${CMAKE_CURRENT_LIST_DIR}/weak/include)
-mapbox_base_add_library(typewrapper ${CMAKE_CURRENT_LIST_DIR}/typewrapper/include)
-mapbox_base_add_library(value ${CMAKE_CURRENT_LIST_DIR}/value/include)
 mapbox_base_add_library(cheap-ruler-cpp ${CMAKE_CURRENT_LIST_DIR}/cheap-ruler-cpp/include)
 
 target_link_libraries(mapbox-base-value INTERFACE mapbox-base-geometry.hpp)

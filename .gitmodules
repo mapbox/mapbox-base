@@ -43,3 +43,6 @@
 [submodule "mapbox/geojson-vt-cpp"]
 	path = deps/geojson-vt-cpp
 	url = https://github.com/mapbox/geojson-vt-cpp.git
+[submodule "extras/googletest"]
+	path = extras/googletest
+	url = https://github.com/google/googletest.git

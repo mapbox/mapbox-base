@@ -31,3 +31,4 @@ mapbox_base_extras_add_library(filesystem ${CMAKE_CURRENT_LIST_DIR}/filesystem/i
 mapbox_base_extras_add_library(kdbush.hpp ${CMAKE_CURRENT_LIST_DIR}/kdbush.hpp/include)
 
 include(${CMAKE_CURRENT_LIST_DIR}/rapidjson.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/googletest.cmake)

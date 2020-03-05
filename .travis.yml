@@ -1,28 +1,55 @@
 sudo: false
-
+# dist: bionic
 language: cpp
 
-compiler:
-  - gcc
-  - clang
+# branches:
+#   only:
+#     - master
 
-addons:
-  apt:
-    sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.8' ]
-    packages: [ 'g++-6', 'clang-3.8', 'clang-tidy' ]
+env:
+  global:
+    - JOBS=4
+    - PROJECT_NAME="mapbox-base"
 
-before_script:
-- if [[ ${CXX} == "g++" ]]; then export CXX="g++-6" CC="gcc-6" ; fi
-- if [[ ${CXX} == "clang++" ]]; then export CXX="clang++-3.8" CC="clang-3.8" ; fi
+jobs:
+  - &syntax-check
+    stage: test
+    os: linux
+    language: cpp
+    name: Syntax Check
 
-script:
-  - clang-format -i $(git ls-files *.hpp *.cpp |xargs -L1 -i find {} -type f -maxdepth 0) && git diff --exit-code
-  - mkdir build && cd build
-  - cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_CLANG_TIDY=clang-tidy
-  - cmake --build . --target include-test-bundle
-  - cmake --build . --target include-test-targets
-  - cmake --build . --target io-test
-  - cmake --build . --target weak-test
-  - cmake --build . --target typewrapper-test
-  - cmake --build . --target value-test
-  - ctest -V
+    addons: &gcc6
+      apt:
+        sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.8' ]
+        packages: [ 'clang-3.8', 'clang-tidy' ]
+
+    script: scripts/ci/run-syntax-check.sh
+
+  - &test
+    stage: test
+    os: linux
+    language: cpp
+    name: Test / gcc-6-release
+    cache:
+      ccache: true
+      apt: true
+      directories:
+        - test/cache
+    addons: &gcc6
+      apt:
+        sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.8' ]
+        packages: ['g++-6']
+    compiler: "gcc-6"
+    env: "CCOMPILER='gcc-6' CXXCOMPILER='g++-6' BUILD_TYPE='Release'"
+    install: scripts/ci/install-tests.sh
+    script: scripts/ci/run-tests.sh
+
+  - <<: *test
+    name: Test / gcc-6-debug
+    addons:
+      apt:
+        sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.8' ]
+        packages: ['g++-6']
+    env: "CCOMPILER='gcc-6' CXXCOMPILER='g++-6' BUILD_TYPE='Debug'"
+    install: scripts/ci/install-tests.sh
+    script: scripts/ci/run-tests.sh

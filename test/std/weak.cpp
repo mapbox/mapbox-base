@@ -1,4 +1,6 @@
-#include "../mapbox/weak/include/mapbox/weak.hpp"
+#include "mapbox/std/weak.hpp"
+
+#include <gtest/gtest.h>
 
 #include <atomic>
 #include <chrono>
@@ -7,9 +9,7 @@
 #include <thread>
 #include <vector>
 
-namespace {
-
-void testLock() {
+TEST(WeakPtr, Lock) {
     using namespace std::chrono_literals;
     static std::atomic_int g_i;
     struct TestLock {
@@ -38,22 +38,22 @@ void testLock() {
         weak3->inc();
     }
 
-    assert(!weak1.expired());
-    assert(!weak2.expired());
-    assert(weak1);
-    assert(weak2);
-    t.reset(); // Should not crash.
+    EXPECT_FALSE(weak1.expired());
+    EXPECT_FALSE(weak2.expired());
+    EXPECT_TRUE(weak1);
+    EXPECT_TRUE(weak2);
+    ASSERT_NO_THROW(t.reset()); // Should not crash.
     thread1.join();
     thread2.join();
 
-    assert(weak1.expired());
-    assert(weak2.expired());
-    assert(!weak1);
-    assert(!weak2);
-    assert(g_i == 3);
+    EXPECT_TRUE(weak1.expired());
+    EXPECT_TRUE(weak2.expired());
+    EXPECT_FALSE(weak1);
+    EXPECT_FALSE(weak2);
+    EXPECT_EQ(g_i, 3);
 }
 
-void testMultipleLock() {
+TEST(WeakPtr, MultipleLock) {
     using namespace std::chrono_literals;
     using std::chrono::system_clock;
 
@@ -89,10 +89,10 @@ void testMultipleLock() {
     for (auto& thread : threads) {
         thread.join();
     }
-    assert(g_i == threadsCount);
+    EXPECT_EQ(g_i, threadsCount);
 }
 
-void testWeakMethod() {
+TEST(WeakPtr, WeakMethod) {
     using namespace std::chrono_literals;
     static std::atomic_int g_i;
     class Test {
@@ -122,10 +122,10 @@ void testWeakMethod() {
     thread1.join();
     thread2.join();
 
-    assert(g_i == 111);
+    EXPECT_EQ(g_i, 111);
 }
 
-void testWeakMethodBlock() {
+TEST(WeakPtr, WeakMethodBlock) {
     // NOLINTNEXTLINE(google-build-using-namespace)
     using namespace std::chrono;
     using namespace std::chrono_literals;
@@ -148,16 +148,6 @@ void testWeakMethodBlock() {
     thread.join();
     auto totalTime = duration_cast<milliseconds>(high_resolution_clock::now() - first);
 
-    assert(g_call_finished);
-    assert(totalTime >= 100ms);
-}
-
-} // namespace
-
-int main() {
-    testLock();
-    testMultipleLock();
-    testWeakMethod();
-    testWeakMethodBlock();
-    return 0;
+    EXPECT_TRUE(g_call_finished);
+    EXPECT_GE(totalTime, 100ms);
 }

@@ -33,3 +33,5 @@
 
 # CMake build folder
 build/
+
+*.user

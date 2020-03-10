@@ -41,8 +41,3 @@ mapbox_base_add_library(shelf-pack-cpp ${CMAKE_CURRENT_LIST_DIR}/shelf-pack-cpp/
 mapbox_base_add_library(supercluster.hpp ${CMAKE_CURRENT_LIST_DIR}/supercluster.hpp/include)
 mapbox_base_add_library(variant ${CMAKE_CURRENT_LIST_DIR}/variant/include)
 mapbox_base_add_library(cheap-ruler-cpp ${CMAKE_CURRENT_LIST_DIR}/cheap-ruler-cpp/include)
-
-target_link_libraries(mapbox-base-value INTERFACE mapbox-base-geometry.hpp)
-target_link_libraries(mapbox-base-value INTERFACE mapbox-base-variant)
-
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/io)

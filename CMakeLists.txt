@@ -18,7 +18,7 @@ if(TARGET mapbox-base)
 endif()
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/extras)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mapbox)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/include)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/deps)
 
 if (${BUILD_TESTS})

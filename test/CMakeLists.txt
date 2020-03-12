@@ -18,7 +18,7 @@ function(create_test folder_name)
         )
     target_include_directories(${target_name} PRIVATE
             ${curr_folder}
-            ${PROJECT_SOURCE_DIR}/mapbox/include
+            ${PROJECT_SOURCE_DIR}/include
             ${CMAKE_CURRENT_LIST_DIR}
             )
 

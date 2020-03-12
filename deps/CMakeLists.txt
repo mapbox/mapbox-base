@@ -10,8 +10,13 @@ function(mapbox_base_add_library name include_path)
         ${include_path}
     )
 
-    # target_link_libraries(mapbox-base INTERFACE mapbox-base-${name})
+    target_link_libraries(mapbox-base INTERFACE mapbox-base-${name})
 endfunction()
+
+execute_process(
+    COMMAND git submodule update --init
+    WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+)
 
 mapbox_base_add_library(geojson-vt-cpp ${CMAKE_CURRENT_LIST_DIR}/geojson-vt-cpp/include)
 mapbox_base_add_library(geojson.hpp ${CMAKE_CURRENT_LIST_DIR}/geojson.hpp/include)

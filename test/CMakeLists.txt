@@ -1,4 +1,3 @@
-enable_testing()
 
 set (TEST_BINARY_PATH ${CMAKE_CURRENT_BINARY_DIR})
 configure_file(${CMAKE_CURRENT_LIST_DIR}/test_defines.hpp.in ${CMAKE_CURRENT_LIST_DIR}/test_defines.hpp)

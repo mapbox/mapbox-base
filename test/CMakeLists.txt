@@ -24,8 +24,9 @@ function(create_test folder_name)
     add_test(NAME ${target_name} COMMAND ${target_name} ${TEST_ARGUMENTS})
 endfunction()
 
-create_test("std")
+create_test("compatibility")
 create_test("io")
+create_test("std")
 create_test("util")
 
 # TODO: find out why this should be explicitly specified in order to run `make test `

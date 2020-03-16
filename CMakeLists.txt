@@ -21,6 +21,6 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/extras)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/include)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/deps)
 
-if (${BUILD_TESTING})
+if (BUILD_TESTING)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/test)
-endif(${BUILD_TESTING})
+endif(BUILD_TESTING)

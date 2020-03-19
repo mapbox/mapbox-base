@@ -22,13 +22,12 @@ add_library(Mapbox::Base::Extras ALIAS mapbox-base-extras)
 
 execute_process(
     COMMAND git submodule update --init
-    WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/extras
 )
 
-mapbox_base_extras_add_library(args ${CMAKE_CURRENT_LIST_DIR}/args)
-mapbox_base_extras_add_library(expected-lite ${CMAKE_CURRENT_LIST_DIR}/expected-lite/include)
-mapbox_base_extras_add_library(filesystem ${CMAKE_CURRENT_LIST_DIR}/filesystem/include)
-mapbox_base_extras_add_library(kdbush.hpp ${CMAKE_CURRENT_LIST_DIR}/kdbush.hpp/include)
+mapbox_base_extras_add_library(args ${PROJECT_SOURCE_DIR}/extras/args)
+mapbox_base_extras_add_library(expected-lite ${PROJECT_SOURCE_DIR}/extras/expected-lite/include)
+mapbox_base_extras_add_library(filesystem ${PROJECT_SOURCE_DIR}/extras/filesystem/include)
+mapbox_base_extras_add_library(kdbush.hpp ${PROJECT_SOURCE_DIR}/extras/kdbush.hpp/include)
 
-include(${CMAKE_CURRENT_LIST_DIR}/rapidjson.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/googletest.cmake)
+include(${PROJECT_SOURCE_DIR}/extras/rapidjson.cmake)

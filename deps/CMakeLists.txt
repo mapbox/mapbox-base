@@ -15,16 +15,16 @@ endfunction()
 
 execute_process(
     COMMAND git submodule update --init
-    WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/deps
 )
 
-mapbox_base_add_library(geojson-vt-cpp ${CMAKE_CURRENT_LIST_DIR}/geojson-vt-cpp/include)
-mapbox_base_add_library(geojson.hpp ${CMAKE_CURRENT_LIST_DIR}/geojson.hpp/include)
-mapbox_base_add_library(geometry.hpp ${CMAKE_CURRENT_LIST_DIR}/geometry.hpp/include)
-mapbox_base_add_library(jni.hpp ${CMAKE_CURRENT_LIST_DIR}/jni.hpp/include)
-mapbox_base_add_library(optional ${CMAKE_CURRENT_LIST_DIR}/optional)
-mapbox_base_add_library(pixelmatch-cpp ${CMAKE_CURRENT_LIST_DIR}/pixelmatch-cpp/include)
-mapbox_base_add_library(shelf-pack-cpp ${CMAKE_CURRENT_LIST_DIR}/shelf-pack-cpp/include)
-mapbox_base_add_library(supercluster.hpp ${CMAKE_CURRENT_LIST_DIR}/supercluster.hpp/include)
-mapbox_base_add_library(variant ${CMAKE_CURRENT_LIST_DIR}/variant/include)
-mapbox_base_add_library(cheap-ruler-cpp ${CMAKE_CURRENT_LIST_DIR}/cheap-ruler-cpp/include)
+mapbox_base_add_library(geojson-vt-cpp ${PROJECT_SOURCE_DIR}/deps/geojson-vt-cpp/include)
+mapbox_base_add_library(geojson.hpp ${PROJECT_SOURCE_DIR}/deps/geojson.hpp/include)
+mapbox_base_add_library(geometry.hpp ${PROJECT_SOURCE_DIR}/deps/geometry.hpp/include)
+mapbox_base_add_library(jni.hpp ${PROJECT_SOURCE_DIR}/deps/jni.hpp/include)
+mapbox_base_add_library(optional ${PROJECT_SOURCE_DIR}/deps/optional)
+mapbox_base_add_library(pixelmatch-cpp ${PROJECT_SOURCE_DIR}/deps/pixelmatch-cpp/include)
+mapbox_base_add_library(shelf-pack-cpp ${PROJECT_SOURCE_DIR}/deps/shelf-pack-cpp/include)
+mapbox_base_add_library(supercluster.hpp ${PROJECT_SOURCE_DIR}/deps/supercluster.hpp/include)
+mapbox_base_add_library(variant ${PROJECT_SOURCE_DIR}/deps/variant/include)
+mapbox_base_add_library(cheap-ruler-cpp ${PROJECT_SOURCE_DIR}/deps/cheap-ruler-cpp/include)

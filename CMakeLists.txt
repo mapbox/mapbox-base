@@ -5,6 +5,8 @@ endif()
 cmake_minimum_required(VERSION 3.5.1 FATAL_ERROR)
 project(MAPBOX_BASE LANGUAGES CXX C)
 
+option(MAPBOX_BASE_BUILD_TESTING "Bypass project target check and enforce building tests" OFF)
+
 include(CTest)
 
 cmake_policy(SET CMP0063 NEW)
@@ -23,6 +25,6 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/extras)
 add_subdirectory(${PROJECT_SOURCE_DIR}/include)
 add_subdirectory(${PROJECT_SOURCE_DIR}/deps)
 
-if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND BUILD_TESTING)
+if ((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME OR MAPBOX_BASE_BUILD_TESTING) AND BUILD_TESTING)
     add_subdirectory(${PROJECT_SOURCE_DIR}/test)
 endif()

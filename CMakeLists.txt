@@ -1,26 +1,28 @@
-cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
+if(TARGET mapbox-base)
+    return()
+endif()
+
+cmake_minimum_required(VERSION 3.5.1 FATAL_ERROR)
 project(MAPBOX_BASE LANGUAGES CXX C)
 
-enable_testing()
+include(CTest)
 
-# Required to avoid warnings when setting visibility
 cmake_policy(SET CMP0063 NEW)
+
+if(NOT CMAKE_VERSION VERSION_LESS 3.13.0)
+    # Required to allow mapbox-base to depend on libraries coming from /deps
+    cmake_policy(SET CMP0079 NEW)
+endif()
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 
-set (MAPBOX_BASE_EXTRAS ${CMAKE_CURRENT_LIST_DIR}/extras)
+add_subdirectory(${PROJECT_SOURCE_DIR}/extras)
+add_subdirectory(${PROJECT_SOURCE_DIR}/include)
+add_subdirectory(${PROJECT_SOURCE_DIR}/deps)
 
-if(TARGET mapbox-base)
-    return()
+if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND BUILD_TESTING)
+    add_subdirectory(${PROJECT_SOURCE_DIR}/test)
 endif()
-
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/extras)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/include)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/deps)
-
-if (BUILD_TESTING)
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/test)
-endif(BUILD_TESTING)

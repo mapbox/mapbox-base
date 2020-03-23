@@ -7,13 +7,10 @@
 #define MB_COMPILER_MSVC 3
 
 #if defined(__clang__)
-#    undef MB_COMPILER
 #    define MB_COMPILER MB_COMPILER_CLANG
 #elif defined(__GNUC__) || defined(__GNUG__) // after clang, possible it also has the same defines (need to research)
-#    undef MB_COMPILER
 #    define MB_COMPILER MB_COMPILER_GNU
 #elif defined(_MSC_VER)
-#    undef MB_COMPILER
 #    define MB_COMPILER MB_COMPILER_MSVC
 #else
 #    error "Unsupported compiler"
@@ -31,11 +28,9 @@
 #define MB_PLATFORM_QNX_4 8
 
 #if (defined(__WIN32__) || defined(_WIN32)) && !defined(__ANDROID__)
-#    undef MB_PLATFORM
 #    define MB_PLATFORM MB_PLATFORM_WIN32
 #elif defined(__APPLE_CC__)
 #    include "TargetConditionals.h"
-#    undef MB_PLATFORM
 #    if TARGET_OS_IOS && TARGET_OS_EMBEDDED
 #        define MB_PLATFORM MB_PLATFORM_IOS_EMBEDDED
 #    elif TARGET_OS_IOS && TARGET_OS_SIMULATOR
@@ -44,7 +39,6 @@
 #        define MB_PLATFORM MB_PLATFORM_MAC
 #    endif
 #elif defined(__ANDROID__)
-#    undef MB_PLATFORM
 #    define MB_PLATFORM MB_PLATFORM_ANDROID
 #elif defined(__QNX__)
 #    if defined(__QNXNTO__)
@@ -53,7 +47,6 @@
 #        define MB_PLATFORM MB_PLATFORM_QNX_4
 #    endif
 #else // let all other platform right now is a linux platforms
-#    undef MB_PLATFORM
 #    define MB_PLATFORM MB_PLATFORM_LINUX
 #endif
 

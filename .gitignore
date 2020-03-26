@@ -34,4 +34,7 @@
 # CMake build folder
 build/
 
+# NPM modules
+node_modules
+
 *.user

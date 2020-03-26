@@ -1,5 +1,11 @@
 [
   {
+    "path": "extras/googletest",
+    "licenseFile": "LICENSE",
+    "hash": "9702de7e4117a8e2b20dafab11ffda58c198aede066406496bef670d40a22138",
+    "action": "file"
+  },
+  {
     "path": "extras/kdbush.hpp",
     "licenseFile": "LICENSE",
     "hash": "eeb9c9d04d930512cec46a5d7c08f418af9fbc50ebf481f09fcebcdf3fbb941c",
@@ -24,19 +30,19 @@
     "action": "file"
   },
   {
-    "path": "mapbox/geometry.hpp",
+    "path": "deps/geometry.hpp",
     "licenseFile": "LICENSE",
     "hash": "44b7f71c4d7f3da85e5e6a5d0cfa6942055d326a24f4d60a3728ebed26ea2b9d",
     "action": "file"
   },
   {
-    "path": "mapbox/optional",
+    "path": "deps/optional",
     "licenseFile": "LICENSE",
     "hash": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
     "action": "file"
   },
   {
-    "path": "mapbox/pixelmatch-cpp",
+    "path": "deps/pixelmatch-cpp",
     "licenseFile": "LICENSE.txt",
     "hash": "6c7e3e75cd5368e6a552a2e94db1a50080c0b2972d1d2364144227b047a6e18c",
     "action": "file"
@@ -48,45 +54,45 @@
     "action": "file"
   },
   {
-    "path": "mapbox/variant",
+    "path": "deps/variant",
     "licenseFile": "LICENSE",
     "hash": "7686f81e580cd6774f609a2d8a41b2cebdf79bc30e6b46c3efff5a656158981c",
     "action": "file"
   },
   {
-    "path": "mapbox/geojson.hpp",
+    "path": "deps/cheap-ruler-cpp",
+    "licenseFile": "LICENSE",
+    "hash": "27043d1a6a0e1985fde12660decbbd3b23c67de900b00609c90d4f0aa492f425",
+    "action": "file"
+  },
+  {
+    "path": "deps/geojson-vt-cpp",
+    "licenseFile": "LICENSE",
+    "hash": "828f2aed51b6526881a236758ec9b08cd69928fbfc70346d9d44a0b3a3444fe1",
+    "action": "file"
+  },
+  {
+    "path": "deps/geojson.hpp",
     "licenseFile": "LICENSE",
     "hash": "e2bf3affd357261f7451bb19108281c1bde54746bfa2beb0c1c34ab042b21700",
     "action": "file"
   },
   {
-    "path": "mapbox/jni.hpp",
+    "path": "deps/jni.hpp",
     "licenseFile": "LICENSE.txt",
     "hash": "640f62b4b6e940645b96d12416e6db84ed191ebcfd10c3a0ccc9a1338f222726",
     "action": "file"
   },
   {
-    "path": "mapbox/supercluster.hpp",
+    "path": "deps/shelf-pack-cpp",
+    "licenseFile": "LICENSE.md",
+    "hash": "27043d1a6a0e1985fde12660decbbd3b23c67de900b00609c90d4f0aa492f425",
+    "action": "file"
+  },
+  {
+    "path": "deps/supercluster.hpp",
     "licenseFile": "LICENSE",
     "hash": "e2bf3affd357261f7451bb19108281c1bde54746bfa2beb0c1c34ab042b21700",
-    "action": "file"
-  },
-  {
-    "path": "mapbox/io",
-    "licenseFile": "LICENSE",
-    "hash": "7686f81e580cd6774f609a2d8a41b2cebdf79bc30e6b46c3efff5a656158981c",
-    "action": "file"
-  },
-  {
-    "path": "mapbox/typewrapper",
-    "licenseFile": "LICENSE",
-    "hash": "7686f81e580cd6774f609a2d8a41b2cebdf79bc30e6b46c3efff5a656158981c",
-    "action": "file"
-  },
-  {
-    "path": "mapbox/weak",
-    "licenseFile": "LICENSE",
-    "hash": "7686f81e580cd6774f609a2d8a41b2cebdf79bc30e6b46c3efff5a656158981c",
     "action": "file"
   }
 ]

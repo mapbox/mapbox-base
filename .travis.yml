@@ -25,6 +25,15 @@ jobs:
 
     script: scripts/ci/run-syntax-check.sh
 
+  - &license-check
+    state: test
+    os: linux
+    language: node_js
+    node_js:
+      - 10
+    name: License Check
+    script: scripts/check-license.sh
+
   - &test
     stage: test
     os: linux

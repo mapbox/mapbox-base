@@ -2,6 +2,10 @@
 
 ## master
 
+### ✨ New features
+- [extras] Bump googletest to 1.10.0
+    - Better gmock syntax.
+
 ## v1.3.0
 
 ### ✨ New features

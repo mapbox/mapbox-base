@@ -1,10 +1,16 @@
 # Mapbox Base
 
-## master
+## v1.4.0
 
 ### ✨ New features
 - [extras] Bump googletest to 1.10.0
     - Better gmock syntax.
+
+### ⚠️ Breaking changes
+- [base] expected-lite @ v0.4.0
+
+### 💫️ Other
+- [doc] Add documentation for `mapbox::base::Value`
 
 ## v1.3.0
 

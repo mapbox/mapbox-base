@@ -14,7 +14,7 @@ function(mapbox_base_add_library name include_path)
 endfunction()
 
 execute_process(
-    COMMAND git submodule update --init
+    COMMAND git submodule update --init .
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/deps
 )
 

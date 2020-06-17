@@ -21,7 +21,7 @@ add_library(mapbox-base-extras INTERFACE)
 add_library(Mapbox::Base::Extras ALIAS mapbox-base-extras)
 
 execute_process(
-    COMMAND git submodule update --init
+    COMMAND git submodule update --init .
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/extras
 )
 

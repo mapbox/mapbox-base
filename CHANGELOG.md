@@ -1,5 +1,15 @@
 # Mapbox Base
 
+## next
+
+### 💫️ Other
+ - [base] Update geojson-vt-cpp to v6.6.4
+
+## v1.5.0
+
+### 💫️ Other
+ - [base] Update geojson.hpp to v0.5.0
+
 ## v1.4.0
 
 ### ✨ New features

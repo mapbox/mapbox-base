@@ -4,6 +4,7 @@
 
 ### 💫️ Other
  - [base] Update geojson-vt-cpp to v6.6.4
+ - [ci] Rename master branch to main
 
 ## v1.5.0
 

@@ -300,7 +300,7 @@ public:
      * Destroys the factory, invalidating all the
      * weak pointers to this object, i.e. makes them empty.
      */
-    ~WeakPtrFactory() { strong_->invalidate(); }
+    ~WeakPtrFactory() { invalidateWeakPtrs(); }
 
     /**
      * Make a weak pointer for this WeakPtrFactory. Weak pointer
@@ -346,6 +346,21 @@ public:
                 (obj->*method)(std::forward<decltype(params)>(params)...);
             }
         };
+    }
+
+    /**
+     * @brief Invalidates all existing weak pointers.
+     *
+     * This method is particularly useful, when \c T  class has a user-defined destructor,
+     * that makes the wrapped instance invalid even before entering the \c WeakPtrFactory
+     * destructor.
+     * In this case, clients *MUST* explicitly call \c invalidateWeakPtrs() before freeing any resources.
+     *
+     * Note: After \c invalidateWeakPtrs() is called, \c makeWeakPtr() returns empty weak pointers.
+     */
+    void invalidateWeakPtrs() {
+        if (strong_) strong_->invalidate();
+        strong_.reset();
     }
 
 private:

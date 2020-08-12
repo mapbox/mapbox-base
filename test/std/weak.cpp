@@ -53,6 +53,55 @@ TEST(WeakPtr, Lock) {
     EXPECT_EQ(g_i, 3);
 }
 
+TEST(WeakPtr, InvalidateWeakPtrs) {
+    using namespace std::chrono_literals;
+    static std::atomic_int g_i;
+    struct TestLock {
+        void inc() { ++g_i; }
+        mapbox::base::WeakPtrFactory<TestLock> factory_{this};
+    };
+
+    auto t = std::make_unique<TestLock>();
+    auto weak1 = t->factory_.makeWeakPtr();
+    auto weak2 = t->factory_.makeWeakPtr();
+    auto weak3 = weak2;
+
+    std::thread thread1([&] {
+        auto guard = weak1.lock();
+        std::this_thread::sleep_for(150ms);
+        weak1->inc();
+    });
+    std::thread thread2([&] {
+        auto guard = weak2.lock();
+        std::this_thread::sleep_for(200ms);
+        weak2->inc();
+    });
+    {
+        auto guard = weak3.lock();
+        std::this_thread::sleep_for(50ms);
+        weak3->inc();
+    }
+
+    EXPECT_TRUE(weak1);
+    EXPECT_TRUE(weak2);
+    EXPECT_TRUE(weak3);
+    t->factory_.invalidateWeakPtrs();
+
+    // All the existing weak pointer have expired.
+    EXPECT_FALSE(weak3);
+
+    thread1.join();
+    thread2.join();
+
+    EXPECT_FALSE(weak1);
+    EXPECT_FALSE(weak2);
+    EXPECT_EQ(g_i, 3);
+
+    // The newly created one is empty.
+    auto weak4 = t->factory_.makeWeakPtr();
+    EXPECT_FALSE(weak4);
+}
+
 TEST(WeakPtr, MultipleLock) {
     using namespace std::chrono_literals;
     using std::chrono::system_clock;

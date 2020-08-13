@@ -20,14 +20,26 @@ public:
     WeakPtrSharedData() = default;
 
     void sharedLock() {
-        assert(valid());
-        sharedLocks_++;
+        std::size_t noLocks = sharedLocks_;
+        std::size_t incremented;
+        do {
+            if (noLocks == kInvalidValue) return;
+            incremented = noLocks + 1;
+            // `compare_exchange_weak()` is invoked in a cycle to handle the case,
+            // if another thread has just modified `sharedLocks_` (so that it is not
+            // equal to `noLocks` any more). We early return, if `sharedLocks_` became
+            // equal to `kInvalidValue`.
+        } while (!sharedLocks_.compare_exchange_weak(noLocks, incremented));
     }
 
     void sharedUnlock() {
-        assert(valid());
-        assert(sharedLocks_ > 0u);
-        sharedLocks_--;
+        std::size_t noLocks = sharedLocks_;
+        std::size_t decremented;
+        do {
+            if (noLocks == kInvalidValue) return;
+            assert(noLocks > 0u);
+            decremented = noLocks - 1;
+        } while (!sharedLocks_.compare_exchange_weak(noLocks, decremented));
     }
 
     void invalidate() {

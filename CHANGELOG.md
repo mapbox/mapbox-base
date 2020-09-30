@@ -2,6 +2,8 @@
 
 ## next
 
+## v1.6.1
+
 ### 💫️ Other
  - [base] jni.hpp @ 57ca9ed4bbeb22ed8d20a55063dcaa217ba47f42
 

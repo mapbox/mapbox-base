@@ -4,9 +4,6 @@
 [submodule "libs/variant"]
 	path = deps/variant
 	url = https://github.com/mapbox/variant.git
-[submodule "libs/optional"]
-	path = deps/optional
-	url = https://github.com/mapbox/Optional.git
 [submodule "libs/args"]
 	path = extras/args
 	url = https://github.com/Taywee/args

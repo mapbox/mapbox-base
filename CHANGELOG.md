@@ -2,6 +2,11 @@
 
 ## next
 
+## v1.7.0
+
+### 💫️ Other
+ - [deps] Bump supercluster.hpp to v0.4.0
+
 ## v1.6.1
 
 ### 💫️ Other

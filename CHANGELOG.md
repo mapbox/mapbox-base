@@ -1,6 +1,9 @@
 # Mapbox Base
 
-## next
+## v1.8.0
+
+### 💫️ Other
+ - [deps] Update supercluster.hpp to v0.5.0
 
 ## v1.7.0
 

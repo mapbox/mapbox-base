@@ -1,5 +1,10 @@
 # Mapbox Base
 
+## v1.8.1
+
+### 💫️ Other
+ - [deps] Update geojson-vt-cpp to v6.6.5
+
 ## v1.8.0
 
 ### 💫️ Other

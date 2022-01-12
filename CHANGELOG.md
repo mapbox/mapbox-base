@@ -1,5 +1,10 @@
 # Mapbox Base
 
+## v1.9.1
+
+### 💫️ Other
+ - [deps] Update ghc::filesystem to v1.5.10
+
 ## v1.9.0
 
 ### 💫️ Other

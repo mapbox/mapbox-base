@@ -1,0 +1,22 @@
+#pragma once
+
+// https://devblogs.microsoft.com/cppblog/msvc-now-correctly-reports-__cplusplus/
+#if ((defined(_MSVC_LANG) && _MSVC_LANG >= 201703L) || __cplusplus >= 201703L)
+
+#define MAPBOX_BASE_USE_CPP17 1
+#define MAPBOX_BASE_USE_CPP14 0
+#define MAPBOX_BASE_USE_CPP11 0
+
+#elif ((defined(_MSVC_LANG) && _MSVC_LANG >= 201402L) || __cplusplus >= 201402L)
+
+#define MAPBOX_BASE_USE_CPP17 0
+#define MAPBOX_BASE_USE_CPP14 1
+#define MAPBOX_BASE_USE_CPP11 0
+
+#else
+
+#define MAPBOX_BASE_USE_CPP17 0
+#define MAPBOX_BASE_USE_CPP14 0
+#define MAPBOX_BASE_USE_CPP11 1
+
+#endif // ((defined(_MSVC_LANG) && _MSVC_LANG >= 201703L) || __cplusplus >= 201703L)

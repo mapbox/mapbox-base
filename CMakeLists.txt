@@ -6,9 +6,11 @@ cmake_minimum_required(VERSION 3.5.1 FATAL_ERROR)
 project(MAPBOX_BASE LANGUAGES CXX C)
 
 option(MAPBOX_BASE_BUILD_TESTING "Bypass project target check and enforce building tests" OFF)
+option(MAPBOX_BASE_WITH_CPP17 "Enable C++17 support" OFF)
 
 include(CTest)
 
+# Honor visibility properties for all target types.
 cmake_policy(SET CMP0063 NEW)
 
 if(NOT CMAKE_VERSION VERSION_LESS 3.13.0)
@@ -16,10 +18,17 @@ if(NOT CMAKE_VERSION VERSION_LESS 3.13.0)
     cmake_policy(SET CMP0079 NEW)
 endif()
 
-set(CMAKE_CXX_STANDARD 14)
+
+if(MAPBOX_BASE_WITH_CPP17)
+    set(CMAKE_CXX_STANDARD 17)
+else()
+    set(CMAKE_CXX_STANDARD 14)
+endif()
+
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/extras)
 add_subdirectory(${PROJECT_SOURCE_DIR}/include)

@@ -1,0 +1,38 @@
+#pragma once
+
+#include <mbx/defines>
+
+#if MAPBOX_BASE_USE_CPP17
+
+#include <optional>
+
+#else // MAPBOX_BASE_USE_CPP17
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weverything"
+#include "../../deps/optional/optional.hpp"
+#pragma GCC diagnostic pop
+
+#endif // MAPBOX_BASE_USE_CPP17
+
+namespace mbx {
+
+#if MAPBOX_BASE_USE_CPP17
+
+using std::bad_optional_access;
+using std::optional;
+using std::make_optional;
+using std::nullopt_t;
+using std::nullopt;
+
+#else // MAPBOX_BASE_USE_CPP17
+
+using std::experimental::bad_optional_access;
+using std::experimental::optional;
+using std::experimental::make_optional;
+using std::experimental::nullopt_t;
+using std::experimental::nullopt;
+
+#endif // MAPBOX_BASE_USE_CPP17
+
+}  // namespace mbx
